@@ -1,0 +1,71 @@
+{
+  "name": "egg-view-assets",
+  "eggPlugin": {
+    "name": "assets"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "egg",
+    "eggPlugin",
+    "egg-plugin"
+  ],
+  "dependencies": {
+    "antd": "^2.6.4",
+    "babel-runtime": "^6.22.0",
+    "dva": "^2.0.0-0",
+    "dva-loading": "^0.3.0",
+    "egg-view-nunjucks": "^2.1.4",
+    "history": "^4.7.2",
+    "query-string": "^5.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "redbox-react": "^1.5.0"
+  },
+  "devDependencies": {
+    "babel-plugin-dva-hmr": "^0.3.2",
+    "babel-plugin-import": "^1.1.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "roadhog": "^1.2.2",
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg": "^2.1.0",
+    "egg-bin": "^4.3.7",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.14.0",
+    "eslint": "^4.13.1",
+    "eslint-config-egg": "^5.1.1",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "egg-bin dev",
+    "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
+    "pkgfiles": "egg-bin pkgfiles",
+    "autod": "autod"
+  },
+  "files": [
+    "app.js",
+    "agent.js",
+    "config"
+  ],
+  "ci": {
+    "version": "8, 9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eggjs/egg-view-assets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eggjs/egg/issues"
+  },
+  "homepage": "https://github.com/eggjs/egg-view-assets#readme",
+  "author": "",
+  "license": "MIT"
+}
