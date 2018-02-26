@@ -5,4 +5,5 @@ module.exports = app => {
 
   router.get('/', controller.home.index);
   router.get('/context', controller.home.context);
+  router.get('/options', controller.home.options);
 };

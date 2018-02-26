@@ -60,6 +60,23 @@ describe('test/assets.test.js', () => {
         .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
         .expect(200);
     });
+
+    it('should render context', () => {
+      return app.httpRequest()
+        .get('/context')
+        .expect(/<script>window.context = {"data":1}<\/script>/)
+        .expect(200);
+    });
+
+    it('should use template from render options', () => {
+      return app.httpRequest()
+        .get('/options')
+        .expect(/<div id="root"><\/div>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+        .expect(/<script>window.context = {}<\/script>/)
+        .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+        .expect(200);
+    });
   });
 
   describe.skip('roadhog', () => {
