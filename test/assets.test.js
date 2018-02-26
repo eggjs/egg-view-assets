@@ -9,40 +9,57 @@ describe('test/assets.test.js', () => {
 
   afterEach(mock.restore);
 
-  describe.only('AssetsView with default template', () => {
+  describe('AssetsView with default template', () => {
+    let app;
 
-    describe('in local', () => {
-      let app;
-
-      before(() => {
-        mock.env('local');
-        app = mock.app({
-          baseDir: 'apps/assets',
-        });
-        return app.ready();
+    before(() => {
+      mock.env('local');
+      app = mock.app({
+        baseDir: 'apps/assets',
       });
-      after(() => app.close());
+      return app.ready();
+    });
+    after(() => app.close());
 
-      it('should GET /', () => {
-        return app.httpRequest()
-          .get('/')
-          .expect(/<div id="root"><\/div>/)
-          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/<script>window.context = {}<\/script>/)
-          .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-          .expect(200);
-      });
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<div id="root"><\/div>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+        .expect(/<script>window.context = {}<\/script>/)
+        .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+        .expect(200);
+    });
 
-      it('should render context', () => {
-        return app.httpRequest()
-          .get('/context')
-          .expect(/<script>window.context = {"data":1}<\/script>/)
-          .expect(200);
-      });
+    it('should render context', () => {
+      return app.httpRequest()
+        .get('/context')
+        .expect(/<script>window.context = {"data":1}<\/script>/)
+        .expect(200);
     });
   });
 
   describe('AssetsView with custom template', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.app({
+        baseDir: 'apps/assets-template',
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<div id="root"><\/div>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+        .expect(/<script>window.context = {}<\/script>/)
+        .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+        .expect(200);
+    });
   });
 
   describe.skip('roadhog', () => {

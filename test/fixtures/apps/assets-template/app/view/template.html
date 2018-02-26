@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+  <head>
+    {{ helper.assets.getStyle() | safe }}
+  </head>
+  <body>
+    <div id="root"></div>
+    {{ helper.assets.getContext() | safe }}
+    {{ helper.assets.getScript() | safe }}
+  </body>
+</html>
