@@ -15,5 +15,6 @@ exports.assets = {
     command: '',
     port: null,
     env: {},
+    debug: false,
   },
 };

@@ -23,7 +23,7 @@
 const AssetsContext = require('../../lib/assets_context');
 
 module.exports = {
-  get assetsContext() {
+  get assets() {
     return new AssetsContext(this.ctx);
   },
 };
