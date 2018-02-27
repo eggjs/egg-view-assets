@@ -2,9 +2,22 @@
 
 'use strict';
 
+const http = require('http');
 const Koa = require('koa');
+
 const app = new Koa();
 app.use(async ctx => {
   ctx.body = 'done';
 });
-app.listen(8000);
+
+const server = http.createServer(app.callback());
+server.once('error', err => {
+  console.error(err.stack);
+  process.exit(1);
+});
+server.listen(8000);
+
+process.once('SIGTERM', () => {
+  console.log('server stopped');
+  process.exit();
+});
