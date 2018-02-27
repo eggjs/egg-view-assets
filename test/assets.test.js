@@ -1,8 +1,10 @@
 'use strict';
 
+const path = require('path');
 const mock = require('egg-mock');
 const request = require('supertest');
 const sleep = require('mz-modules/sleep');
+const fs = require('mz/fs');
 
 
 describe('test/assets.test.js', () => {
@@ -77,9 +79,33 @@ describe('test/assets.test.js', () => {
         .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
         .expect(200);
     });
+
+    it('should use cache when template exist', async () => {
+      const template = path.join(__dirname, 'fixtures/apps/assets-template/app/view/cache.html');
+      await fs.writeFile(template, '{{ data }}');
+
+      await app.httpRequest()
+        .get('/cache')
+        .expect(/{"data":1}/)
+        .expect(200);
+
+      await fs.writeFile(template, 'override');
+
+      await app.httpRequest()
+        .get('/cache')
+        .expect(/{"data":1}/)
+        .expect(200);
+    });
+
+    it('should throw when call renderString', () => {
+      return app.httpRequest()
+        .get('/renderString')
+        .expect(/Can\\&#39;t find viewEngine/)
+        .expect(500);
+    });
   });
 
-  describe.skip('roadhog', () => {
+  describe('roadhog', () => {
     let app;
     before(() => {
       mock.env('local');

@@ -6,7 +6,7 @@ const mock = require('egg-mock');
 const sleep = require('mz-modules/sleep');
 
 
-describe.skip('test/dev_server.test.js', () => {
+describe('test/dev_server.test.js', () => {
 
   let app;
   afterEach(mock.restore);

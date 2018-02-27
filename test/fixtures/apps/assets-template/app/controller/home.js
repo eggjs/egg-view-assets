@@ -15,11 +15,21 @@ class HomeController extends Controller {
   }
 
   async options() {
-    console.log(1111);
     await this.ctx.render('index.js', {}, {
       templatePath: path.join(__dirname, '../view/template.ejs'),
       templateViewEngine: 'ejs',
     });
+  }
+
+  async cache() {
+    await this.ctx.render('index.js', { data: 1 }, {
+      templatePath: path.join(__dirname, '../view/template.ejs'),
+      templateViewEngine: 'ejs',
+    });
+  }
+
+  async renderString() {
+    await this.ctx.renderString('index.js', { data: 1 });
   }
 
 }
