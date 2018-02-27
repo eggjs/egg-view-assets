@@ -10,9 +10,6 @@ describe('test/dev_server.test.js', () => {
 
   let app;
   afterEach(mock.restore);
-
-  before(() => {
-  });
   afterEach(() => app.close());
   afterEach(() => sleep(5000));
 
