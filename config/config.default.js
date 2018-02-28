@@ -6,6 +6,7 @@ module.exports = appInfo => {
       isLocal: appInfo.env === 'local',
       url: '',
       urlPrefix: '',
+      publicPath: '',
       templatePath: '',
       templateViewEngine: '',
       template: {
