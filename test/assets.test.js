@@ -113,6 +113,17 @@ describe('test/assets.test.js', () => {
       });
       return app.ready();
     });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<div id="root"><\/div>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/index.b8e2efea.css"><\/link>/)
+        .expect(/<script>window.context = {}<\/script>/)
+        .expect(/<script src="http:\/\/cdn.com\/index.c4ae6394.js"><\/script>/)
+        .expect(200);
+    });
 
     it('should', async () => {
 

@@ -13,6 +13,4 @@ module.exports = agent => {
   agent.beforeClose(async () => {
     await server.close();
   });
-
-  process.once('SIGTERM', () => agent.close());
 };

@@ -6,10 +6,15 @@ const assert = require('assert');
 const AssetsView = require('./lib/assets_view');
 
 module.exports = app => {
-  if (!app.config.assets.isLocal) {
+  const assetsConfig = app.config.assets;
+  if (app.config.env === 'local' && !assetsConfig.url) {
+    assetsConfig.url = 'http://127.0.0.1:' + assetsConfig.devServer.port;
+  }
+
+  if (!assetsConfig.isLocal) {
     const manifestPath = path.join(app.config.baseDir, 'config/manifest.json');
     assert(fs.existsSync(manifestPath), `${manifestPath} is required`);
-    app.config.assets.manifest = require(manifestPath);
+    assetsConfig.manifest = require(manifestPath);
   }
 
   app.view.use('assets', AssetsView);
