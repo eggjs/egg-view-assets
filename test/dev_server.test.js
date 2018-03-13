@@ -52,4 +52,19 @@ describe('test/dev_server.test.js', () => {
   it('should log error when run command error', async () => {
 
   });
+
+  it('should success when run command', async () => {
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/not-listen',
+    });
+    app.debug();
+    await app.ready();
+
+    await app.close();
+    await sleep(5000);
+
+    app.expect('stderr', /Run "echo command" failed after 60s/);
+  });
+
 });
