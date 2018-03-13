@@ -15,5 +15,6 @@ exports.assets = {
     command: path.join(__dirname, '../../mocktool/server'),
     port: 8000,
     env: {},
+    debug: true,
   },
 };
