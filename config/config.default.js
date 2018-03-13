@@ -5,17 +5,10 @@ module.exports = appInfo => {
     assets: {
       isLocal: appInfo.env === 'local',
       url: '',
-      urlPrefix: '',
       publicPath: '',
       templatePath: '',
       templateViewEngine: '',
-      template: {
-        style: true,
-        script: true,
-        context: true,
-        contextKey: 'context',
-        common: false,
-      },
+      contextKey: 'context',
       devServer: {
         command: '',
         port: null,

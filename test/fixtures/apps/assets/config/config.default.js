@@ -9,6 +9,7 @@ exports.view = {
   },
 };
 exports.assets = {
+  publicPath: '/app/public',
   devServer: {
     command: path.join(__dirname, '../../mocktool/server'),
     port: 8000,

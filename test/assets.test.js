@@ -28,6 +28,7 @@ describe('test/assets.test.js', () => {
         .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
         .expect(/<script>window.context = {}<\/script>/)
         .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+        .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
         .expect(200);
     });
 

@@ -7,7 +7,7 @@ const AssetsView = require('./lib/assets_view');
 
 module.exports = app => {
   const assetsConfig = app.config.assets;
-  if (assert.isLocal && !assetsConfig.url) {
+  if (assetsConfig.isLocal && !assetsConfig.url) {
     assetsConfig.url = 'http://127.0.0.1:' + assetsConfig.devServer.port;
   }
 
