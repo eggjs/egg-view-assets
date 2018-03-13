@@ -1,14 +1,16 @@
 'use strict';
 
-const cp = require('child_process');
+const DevServer = require('./lib/dev_server');
 
 module.exports = agent => {
-  const assetsConfig = agent.config.assets;
-  const devServer = assetsConfig.devServer;
+  if (!agent.config.assets.isLocal) return;
 
-  const env = Object.assign({}, process.env);
-  env.PATH = `${process.cwd()}/node_modules/.bin:${env.PATH}`;
-  console.log(env.PATH);
-  const p = cp.spawn('roadhog', [ 'server' ], { env, stdio: 'inherit' });
-  p.on('exit', e => console.log(e));
+  const server = new DevServer(agent);
+  server.ready(err => {
+    if (err) agent.coreLogger.error('[egg-view-assets]', err.message);
+  });
+
+  agent.beforeClose(async () => {
+    await server.close();
+  });
 };

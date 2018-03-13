@@ -1,34 +1,20 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
+const assert = require('assert');
+const AssetsView = require('./lib/assets_view');
 
 module.exports = app => {
   const assetsConfig = app.config.assets;
-  const templateStr = fs.readFileSync(assetsConfig.templatePath, 'utf8');
-  const viewEngine = assetsConfig.templateViewEngine;
-  const devServerPort = assetsConfig.devServerPort;
+  if (app.config.env === 'local' && !assetsConfig.url) {
+    assetsConfig.url = 'http://127.0.0.1:' + assetsConfig.devServer.port;
+  }
 
-  assetsConfig.url = 'http://127.0.0.1:' + devServerPort;
-
-  class AssetsView {
-    constructor(ctx) {
-      this.ctx = ctx;
-    }
-
-    * render(name, data, options) {
-      this.ctx.locals = {
-        assetsUrl: assetsConfig.url,
-        entry: options.name,
-        entryCss: options.name.replace(/\.js$/, '.css'),
-        context: JSON.stringify(data),
-      };
-
-      const content = yield this.ctx.renderString(templateStr, {}, { viewEngine });
-      return content;
-    }
-    * renderString(name, data, options) {
-      console.log(name, data, options);
-    }
+  if (!assetsConfig.isLocal) {
+    const manifestPath = path.join(app.config.baseDir, 'config/manifest.json');
+    assert(fs.existsSync(manifestPath), `${manifestPath} is required`);
+    assetsConfig.manifest = require(manifestPath);
   }
 
   app.view.use('assets', AssetsView);

@@ -1,11 +1,27 @@
 'use strict';
 
-const path = require('path');
-
-exports.assets = {
-  url: 'http://127.0.0.1:7001',
-  templatePath: path.join(__dirname, '../lib/template.html'),
-  templateViewEngine: 'nunjucks',
-  devServer: 'roadhog server',
-  devServerPort: '8000',
+module.exports = appInfo => {
+  return {
+    assets: {
+      isLocal: appInfo.env === 'local',
+      url: '',
+      urlPrefix: '',
+      publicPath: '',
+      templatePath: '',
+      templateViewEngine: '',
+      template: {
+        style: true,
+        script: true,
+        context: true,
+        contextKey: 'context',
+        common: false,
+      },
+      devServer: {
+        command: '',
+        port: null,
+        env: {},
+        debug: false,
+      },
+    },
+  };
 };

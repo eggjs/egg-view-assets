@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const http = require('http');
+const Koa = require('koa');
+
+const app = new Koa();
+app.use(async ctx => {
+  ctx.body = 'done';
+});
+
+const server = http.createServer(app.callback());
+server.once('error', err => {
+  console.error('[server]', err.stack);
+  process.exit(1);
+});
+server.listen(8000);
+
+
+process.once('SIGTERM', () => {
+  console.log('[server] server stopped');
+  process.exit();
+});
