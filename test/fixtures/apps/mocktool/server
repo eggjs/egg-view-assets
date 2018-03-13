@@ -12,12 +12,13 @@ app.use(async ctx => {
 
 const server = http.createServer(app.callback());
 server.once('error', err => {
-  console.error(err.stack);
+  console.error('[server]', err.stack);
   process.exit(1);
 });
 server.listen(8000);
 
+
 process.once('SIGTERM', () => {
-  console.log('server stopped');
+  console.log('[server] server stopped');
   process.exit();
 });

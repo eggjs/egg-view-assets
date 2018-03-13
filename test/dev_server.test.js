@@ -46,7 +46,7 @@ describe('test/dev_server.test.js', () => {
 
     app.notExpect('stdout', /listen on 8000/);
     app.expect('stderr', /port 8000 has been used/);
-    app.expect('stdout', /egg started on http:\/\/127.0.0.1:17001/);
+    app.expect('stdout', /egg started on http:\/\/127.0.0.1:\d+/);
   });
 
   it('should log error when run command error', async () => {
