@@ -9,11 +9,10 @@ exports.view = {
   },
 };
 exports.assets = {
-  templatePath: path.join(__dirname, '../app/view/template.html'),
-  templateViewEngine: 'nunjucks',
   devServer: {
     command: path.join(__dirname, '../../mocktool/server'),
     port: 8000,
     env: {},
+    debug: true,
   },
 };
