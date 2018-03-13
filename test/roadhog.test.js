@@ -4,7 +4,7 @@ const mock = require('egg-mock');
 const request = require('supertest');
 const sleep = require('mz-modules/sleep');
 
-describe('roadhog', () => {
+describe.skip('roadhog', () => {
   let app;
   before(() => {
     mock.env('local');
