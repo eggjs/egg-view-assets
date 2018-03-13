@@ -8,24 +8,28 @@
   "keywords": [
     "egg",
     "eggPlugin",
-    "egg-plugin"
+    "egg-plugin",
+    "assets"
   ],
   "dependencies": {
+    "await-event": "^2.1.0",
     "detect-port": "^1.2.2",
-    "mz-modules": "^2.0.0",
+    "mz": "^2.7.0",
+    "mz-modules": "^2.1.0",
     "sdk-base": "^3.4.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
-    "egg": "^2.1.0",
+    "egg": "^2.4.1",
     "egg-bin": "^4.3.7",
     "egg-ci": "^1.8.0",
-    "egg-mock": "^3.14.0",
+    "egg-mock": "^3.15.0",
     "egg-view-ejs": "^2.0.0",
     "egg-view-nunjucks": "^2.1.6",
-    "eslint": "^4.13.1",
-    "eslint-config-egg": "^5.1.1",
+    "eslint": "^4.18.2",
+    "eslint-config-egg": "^7.0.0",
+    "supertest": "^3.0.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -59,6 +63,6 @@
     "url": "https://github.com/eggjs/egg/issues"
   },
   "homepage": "https://github.com/eggjs/egg-view-assets#readme",
-  "author": "",
+  "author": "popomore",
   "license": "MIT"
 }
