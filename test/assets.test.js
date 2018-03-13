@@ -12,31 +12,50 @@ describe('test/assets.test.js', () => {
   describe('AssetsView with default template', () => {
     let app;
 
-    before(() => {
-      mock.env('local');
-      app = mock.app({
-        baseDir: 'apps/assets',
+    describe('local', () => {
+      before(() => {
+        mock.env('local');
+        app = mock.app({
+          baseDir: 'apps/assets',
+        });
+        return app.ready();
       });
-      return app.ready();
-    });
-    after(() => app.close());
+      after(() => app.close());
 
-    it('should GET /', () => {
-      return app.httpRequest()
-        .get('/')
-        .expect(/<div id="root"><\/div>/)
-        .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-        .expect(/<script>window.context = {};<\/script>/)
-        .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-        .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
-        .expect(200);
+      it('should GET /', () => {
+        return app.httpRequest()
+          .get('/')
+          .expect(/<div id="root"><\/div>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+          .expect(/<script>window.context = {"data":1};<\/script>/)
+          .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+          .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
+          .expect(200);
+      });
     });
 
-    it('should render context', () => {
-      return app.httpRequest()
-        .get('/context')
-        .expect(/<script>window.context = {"data":1};<\/script>/)
-        .expect(200);
+    describe('production', () => {
+      let app;
+
+      before(() => {
+        mock.env('prod');
+        app = mock.app({
+          baseDir: 'apps/assets',
+        });
+        return app.ready();
+      });
+      after(() => app.close());
+
+      it('should GET /', () => {
+        return app.httpRequest()
+          .get('/')
+          .expect(/<div id="root"><\/div>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
+          .expect(/<script>window.context = {"data":1};<\/script>/)
+          .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
+          .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
+          .expect(200);
+      });
     });
   });
 
@@ -150,34 +169,6 @@ describe('test/assets.test.js', () => {
           .expect(200);
       });
     });
-  });
-
-  describe('production', () => {
-    let app;
-
-    before(() => {
-      mock.env('prod');
-      app = mock.app({
-        baseDir: 'apps/assets',
-      });
-      return app.ready();
-    });
-    after(() => app.close());
-
-    it('should GET /', () => {
-      return app.httpRequest()
-        .get('/')
-        .expect(/<div id="root"><\/div>/)
-        .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/index.b8e2efea.css"><\/link>/)
-        .expect(/<script>window.context = {};<\/script>/)
-        .expect(/<script src="http:\/\/cdn.com\/index.c4ae6394.js"><\/script>/)
-        .expect(200);
-    });
-
-    it('should', async () => {
-
-    });
-
   });
 
   describe('custom assets.url', () => {
