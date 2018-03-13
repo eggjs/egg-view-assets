@@ -2,7 +2,7 @@
 
 const AssetsContext = require('../../lib/assets_context');
 
-const HELPER_ASSETS = require('../../lib/constant').HELPER_ASSETS;
+const HELPER_ASSETS = require('../../lib/util/constant').HELPER_ASSETS;
 const ASSETS = Symbol('Helper#assets');
 
 module.exports = {
