@@ -130,4 +130,24 @@ describe('test/assets.test.js', () => {
     });
 
   });
+
+  describe('custom assets.url', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.app({
+        baseDir: 'apps/custom-assets-url',
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.css"><\/link>/)
+        .expect(200);
+    });
+  });
 });

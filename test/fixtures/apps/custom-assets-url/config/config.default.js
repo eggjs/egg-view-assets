@@ -1,7 +1,5 @@
 'use strict';
 
-const path = require('path');
-
 exports.keys = '123456';
 exports.view = {
   mapping: {
@@ -10,7 +8,7 @@ exports.view = {
 };
 exports.assets = {
   devServer: {
-    command: path.join(__dirname, '../../mocktool/server'),
+    command: 'echo command',
     port: 8000,
     env: {},
     debug: true,
