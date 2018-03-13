@@ -17,6 +17,7 @@ describe('test/dev_server.test.js', () => {
     mock.env('local');
     app = mock.cluster({
       baseDir: 'apps/assets',
+      cache: false,
     });
     // app.debug();
     await app.ready();
@@ -34,6 +35,7 @@ describe('test/dev_server.test.js', () => {
     server.listen(8000);
     app = mock.cluster({
       baseDir: 'apps/assets',
+      cache: false,
     });
     // app.debug();
     try {
