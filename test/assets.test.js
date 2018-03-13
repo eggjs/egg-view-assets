@@ -213,4 +213,24 @@ describe('test/assets.test.js', () => {
         .expect(200);
     });
   });
+
+  describe('custom contextKey', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.app({
+        baseDir: 'apps/custom-context-key',
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<script>window.__context__ = {};<\/script>/)
+        .expect(200);
+    });
+  });
 });
