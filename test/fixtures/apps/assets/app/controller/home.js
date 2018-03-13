@@ -8,6 +8,12 @@ class HomeController extends Controller {
       data: 1,
     });
   }
+
+  async renderString() {
+    await this.ctx.renderString('', {}, {
+      viewEngine: 'assets',
+    });
+  }
 }
 
 module.exports = HomeController;
