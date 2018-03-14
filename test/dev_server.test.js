@@ -19,7 +19,7 @@ describe('test/dev_server.test.js', () => {
       baseDir: 'apps/assets',
       cache: false,
     });
-    // app.debug();
+    app.debug();
     await app.ready();
     const reg = new RegExp(`Run "${path.join(__dirname, 'fixtures/apps/mocktool/server')}" success, listen on 8000`);
     app.expect('stdout', reg);

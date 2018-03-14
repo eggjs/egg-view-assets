@@ -32,13 +32,6 @@ describe('test/assets.test.js', () => {
           .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
           .expect(200);
       });
-
-      it('should not support renderString', () => {
-        return app.httpRequest()
-          .get('/renderString')
-          .expect(/assets engine don&#39;t support renderString/)
-          .expect(500);
-      });
     });
 
     describe('production', () => {
