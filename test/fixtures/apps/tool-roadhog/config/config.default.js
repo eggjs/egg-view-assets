@@ -8,6 +8,7 @@ exports.view = {
 };
 exports.assets = {
   devServer: {
+    waitStart: true,
     command: 'roadhog dev',
     port: 8000,
   },

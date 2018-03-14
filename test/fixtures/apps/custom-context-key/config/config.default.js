@@ -11,6 +11,7 @@ exports.view = {
 exports.assets = {
   contextKey: '__context__',
   devServer: {
+    waitStart: true,
     command: path.join(__dirname, '../../mocktool/server'),
     port: 8000,
     env: {},
