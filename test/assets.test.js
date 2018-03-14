@@ -5,14 +5,14 @@ const mock = require('egg-mock');
 const fs = require('mz/fs');
 
 
-describe.only('test/assets.test.js', () => {
+describe('test/assets.test.js', () => {
 
   afterEach(mock.restore);
 
   describe('AssetsView with default template', () => {
     let app;
 
-    describe.only('local', () => {
+    describe('local', () => {
       before(() => {
         mock.env('local');
         app = mock.cluster({
