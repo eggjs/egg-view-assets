@@ -125,4 +125,15 @@ describe('test/dev_server.test.js', () => {
     assert(app.stderr.includes(errMsg));
   });
 
+  it('should throw when command error', async () => {
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/command-error',
+    });
+    app.debug();
+    await app.ready();
+
+    app.expect('stderr', /spawn unknown ENOENT/);
+    app.expect('stderr', /Run "unknown command" failed after 5s/);
+  });
 });
