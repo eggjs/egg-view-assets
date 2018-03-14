@@ -12,7 +12,7 @@ describe.only('test/assets.test.js', () => {
   describe('AssetsView with default template', () => {
     let app;
 
-    describe('local', () => {
+    describe.only('local', () => {
       before(() => {
         mock.env('local');
         app = mock.cluster({
