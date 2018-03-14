@@ -109,7 +109,7 @@ describe('test/dev_server.test.js', () => {
     assert(app.stderr.includes(errMsg));
   });
 
-  it.only('should wait timeout', async () => {
+  it('should wait timeout', async () => {
     mock(process.env, 'DEV_SERVER_DEBUG', true);
     mock.env('local');
     app = mock.cluster({
