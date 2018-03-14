@@ -27,6 +27,7 @@ describe('test/dev_server.test.js', () => {
     await app.close();
     app.expect('stdout', /\[egg-view-assets] dev server will be killed/);
     app.expect('stdout', /server stopped/);
+    app.expect('stderr', /\[server] error/);
   });
 
   it('should check first when port has been listened', async () => {

@@ -26,3 +26,5 @@ process.once('SIGTERM', () => {
   console.log('[server] server stopped');
   process.exit();
 });
+
+console.error('[server] error');
