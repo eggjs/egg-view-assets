@@ -5,7 +5,7 @@ const mock = require('egg-mock');
 const fs = require('mz/fs');
 
 
-describe('test/assets.test.js', () => {
+describe.only('test/assets.test.js', () => {
 
   afterEach(mock.restore);
 

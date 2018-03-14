@@ -10,7 +10,7 @@ exports.view = {
 };
 exports.assets = {
   devServer: {
-    waitStart: true
+    waitStart: true,
     command: path.join(__dirname, '../../mocktool/server'),
     port: 8000,
     env: {},
