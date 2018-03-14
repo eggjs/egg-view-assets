@@ -3,6 +3,7 @@
 const net = require('net');
 const path = require('path');
 const mock = require('egg-mock');
+const assert = require('assert');
 const sleep = require('mz-modules/sleep');
 
 
@@ -61,4 +62,39 @@ describe('test/dev_server.test.js', () => {
     app.expect('stdout', /Closing, but devServer is not listened/);
   });
 
+  it('should custom devServer.cwd', async () => {
+    mock(process.env, 'DEV_SERVER_DEBUG', true);
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/custom-dev-server',
+    });
+    app.debug();
+    await app.ready();
+
+    assert(app.stdout.includes('[server] cwd: ' + path.join(__dirname, 'fixtures/apps/custom-dev-server/config')));
+  });
+
+  it('should custom devServer.env', async () => {
+    mock(process.env, 'DEV_SERVER_DEBUG', true);
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/custom-dev-server',
+    });
+    app.debug();
+    await app.ready();
+
+    assert(app.stdout.includes('[server] DEBUG: true');
+  });
+
+  it('should disable devServer.debug', async () => {
+    mock(process.env, 'DEV_SERVER_DEBUG', false);
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/custom-dev-server',
+    });
+    app.debug();
+    await app.ready();
+
+    assert(!app.stdout.includes(path.join(__dirname, 'fixtures/apps/custom-dev-server/config')));
+  });
 });
