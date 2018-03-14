@@ -21,7 +21,7 @@ describe('test/dev_server.test.js', () => {
     });
     app.debug();
     await app.ready();
-    const reg = new RegExp(`Run "${path.join(__dirname, 'fixtures/apps/mocktool/server')}" success, listen on 8000`);
+    const reg = new RegExp(`Run "node ${path.join(__dirname, 'fixtures/apps/mocktool/server')}" success, listen on 8000`);
     app.expect('stdout', reg);
 
     await app.close();
@@ -106,7 +106,7 @@ describe('test/dev_server.test.js', () => {
     await app.ready();
 
     const server = path.join(__dirname, 'fixtures/apps/custom-dev-server/config/server.js');
-    const errMsg = `[egg-view-assets] Run "${server}" exit with code 1`;
+    const errMsg = `[egg-view-assets] Run "node ${server}" exit with code 1`;
     assert(app.stderr.includes(errMsg));
   });
 
@@ -121,7 +121,7 @@ describe('test/dev_server.test.js', () => {
 
     await sleep(10000);
     const server = path.join(__dirname, 'fixtures/apps/custom-dev-server/config/server.js');
-    const errMsg = `[egg-view-assets] Run "${server}" failed after 5s`;
+    const errMsg = `[egg-view-assets] Run "node ${server}" failed after 5s`;
     assert(app.stderr.includes(errMsg));
   });
 
