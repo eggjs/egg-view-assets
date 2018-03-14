@@ -15,7 +15,7 @@ describe.only('test/assets.test.js', () => {
     describe('local', () => {
       before(() => {
         mock.env('local');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets',
         });
         return app.ready();
@@ -39,7 +39,7 @@ describe.only('test/assets.test.js', () => {
 
       before(() => {
         mock.env('prod');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets',
         });
         return app.ready();
@@ -65,7 +65,7 @@ describe.only('test/assets.test.js', () => {
     describe('local', () => {
       before(() => {
         mock.env('local');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets-template',
         });
         return app.ready();
@@ -127,7 +127,7 @@ describe.only('test/assets.test.js', () => {
     describe('prod', () => {
       before(() => {
         mock.env('prod');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets-template',
         });
         return app.ready();
@@ -152,7 +152,7 @@ describe.only('test/assets.test.js', () => {
     describe('local', () => {
       before(() => {
         mock.env('local');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/other-view-engine',
         });
         return app.ready();
@@ -174,7 +174,7 @@ describe.only('test/assets.test.js', () => {
     describe('prod', () => {
       before(() => {
         mock.env('prod');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/other-view-engine',
         });
         return app.ready();
@@ -199,7 +199,7 @@ describe.only('test/assets.test.js', () => {
 
     before(() => {
       mock.env('local');
-      app = mock.app({
+      app = mock.cluster({
         baseDir: 'apps/custom-assets-url',
       });
       return app.ready();
@@ -219,7 +219,7 @@ describe.only('test/assets.test.js', () => {
 
     before(() => {
       mock.env('local');
-      app = mock.app({
+      app = mock.cluster({
         baseDir: 'apps/custom-context-key',
       });
       return app.ready();
