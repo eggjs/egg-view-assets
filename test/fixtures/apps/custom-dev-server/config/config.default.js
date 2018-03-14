@@ -14,6 +14,7 @@ exports.assets = {
     env: {
       DEBUG: true,
     },
+    timeout: 5000,
     debug: process.env.DEV_SERVER_DEBUG === 'true',
   },
 };

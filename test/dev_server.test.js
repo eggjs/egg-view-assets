@@ -44,10 +44,6 @@ describe('test/dev_server.test.js', () => {
     server.close();
   });
 
-  it('should log error when run command error', async () => {
-
-  });
-
   it('should success when run command', async () => {
     mock.env('local');
     app = mock.cluster({
@@ -83,7 +79,7 @@ describe('test/dev_server.test.js', () => {
     app.debug();
     await app.ready();
 
-    assert(app.stdout.includes('[server] DEBUG: true');
+    assert(app.stdout.includes('[server] DEBUG: true'));
   });
 
   it('should disable devServer.debug', async () => {
@@ -97,4 +93,35 @@ describe('test/dev_server.test.js', () => {
 
     assert(!app.stdout.includes(path.join(__dirname, 'fixtures/apps/custom-dev-server/config')));
   });
+
+  it('should log error when run command error', async () => {
+    mock(process.env, 'DEV_SERVER_DEBUG', true);
+    mock(process.env, 'EXIT', true);
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/custom-dev-server',
+    });
+    app.debug();
+    await app.ready();
+
+    const server = path.join(__dirname, 'fixtures/apps/custom-dev-server/config/server.js');
+    const errMsg = `[egg-view-assets] Run "${server}" exit with code 1`;
+    assert(app.stderr.includes(errMsg));
+  });
+
+  it.only('should wait timeout', async () => {
+    mock(process.env, 'DEV_SERVER_DEBUG', true);
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/custom-dev-server',
+    });
+    app.debug();
+    await app.ready();
+
+    await sleep(10000);
+    const server = path.join(__dirname, 'fixtures/apps/custom-dev-server/config/server.js');
+    const errMsg = `[egg-view-assets] Run "${server}" failed after 5s`;
+    assert(app.stderr.includes(errMsg));
+  });
+
 });

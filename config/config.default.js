@@ -15,6 +15,7 @@ module.exports = appInfo => {
         port: null,
         env: {},
         debug: false,
+        timeout: 60 * 1000,
       },
     },
   };
