@@ -15,8 +15,10 @@ server.once('error', err => {
   console.error('[server]', err.stack);
   process.exit(1);
 });
+server.once('listening', () => {
+  console.info('[server] listen 8000');
+});
 server.listen(8000);
-
 
 process.once('SIGTERM', () => {
   console.log('[server] server stopped');
