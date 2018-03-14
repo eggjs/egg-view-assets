@@ -12,7 +12,7 @@ exports.assets = {
   publicPath: '/app/public',
   devServer: {
     waitStart: true,
-    command: path.join(__dirname, '../../mocktool/server'),
+    command: 'node ' + path.join(__dirname, '../../mocktool/server'),
     port: 8000,
     env: {},
   },

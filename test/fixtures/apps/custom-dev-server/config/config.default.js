@@ -9,7 +9,7 @@ exports.view = {
 exports.assets = {
   devServer: {
     waitStart: true,
-    command: require.resolve('./server.js'),
+    command: 'node ' + require.resolve('./server.js'),
     cwd: __dirname,
     port: 8000,
     env: {

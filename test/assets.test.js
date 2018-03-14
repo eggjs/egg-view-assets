@@ -195,7 +195,7 @@ describe('test/assets.test.js', () => {
     });
   });
 
-  describe('custom assets.url', () => {
+  describe.only('custom assets.url', () => {
     let app;
 
     before(() => {
