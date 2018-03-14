@@ -58,7 +58,7 @@ describe('test/dev_server.test.js', () => {
     await app.close();
     await sleep(5000);
 
-    app.expect('stderr', /Run "echo command" failed after 60s/);
+    app.expect('stdout', /Closing, but devServer is not listened/);
   });
 
 });
