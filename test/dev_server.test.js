@@ -36,17 +36,11 @@ describe('test/dev_server.test.js', () => {
       baseDir: 'apps/assets',
     });
     // app.debug();
-    try {
-      await app.ready();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      server.close();
-    }
-
+    await app.ready();
     app.notExpect('stdout', /listen on 8000/);
     app.expect('stderr', /port 8000 has been used/);
-    app.expect('stdout', /egg started on http:\/\/127.0.0.1:\d+/);
+    app.expect('stderr', /\[agent_worker] start error/);
+    server.close();
   });
 
   it('should log error when run command error', async () => {

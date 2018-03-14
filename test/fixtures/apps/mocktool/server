@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-console.log(11111111);
 'use strict';
 
 const http = require('http');
