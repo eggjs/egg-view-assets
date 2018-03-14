@@ -18,6 +18,7 @@ describe.only('test/assets.test.js', () => {
         app = mock.cluster({
           baseDir: 'apps/assets',
         });
+        app.debug();
         return app.ready();
       });
       after(() => app.close());
