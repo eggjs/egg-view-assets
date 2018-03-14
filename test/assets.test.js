@@ -120,7 +120,7 @@ describe('test/assets.test.js', () => {
       it('should throw when call renderString', () => {
         return app.httpRequest()
           .get('/renderString')
-          .expect(/Can\\&#39;t find viewEngine/)
+          .expect(/assets engine don&#39;t support renderString/)
           .expect(500);
       });
     });
