@@ -30,7 +30,7 @@ describe('test/assets.test.js', () => {
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
           .expect(/<script>window.context = {"data":1};<\/script>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-          .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = '\/app\/public';<\/script>/)
           .expect(200);
       });
     });
@@ -54,7 +54,7 @@ describe('test/assets.test.js', () => {
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
           .expect(/<script>window.context = {"data":1};<\/script>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
-          .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = '\/app\/public';<\/script>/)
           .expect(200);
       });
     });
@@ -166,7 +166,7 @@ describe('test/assets.test.js', () => {
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
           .expect(/<script>window.context = {"data":1};<\/script>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-          .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = '\/app\/public';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/127.0.0.1:8000\/';<\/script/)
           .expect(200);
       });
@@ -188,7 +188,7 @@ describe('test/assets.test.js', () => {
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
           .expect(/<script>window.context = {"data":1};<\/script>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
-          .expect(/<script>window.__webpack__public_path__ = '\/app\/public';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = '\/app\/public';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/cdn.com\/app\/public\/';<\/script/)
           .expect(200);
       });
