@@ -6,7 +6,7 @@
       "view"
     ]
   },
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0",
   "description": "Manage frontend assets in development and production",
   "keywords": [
     "egg",
@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "await-event": "^2.1.0",
+    "debug": "^3.1.0",
     "detect-port": "^1.2.2",
     "mz": "^2.7.0",
     "mz-modules": "^2.1.0",
