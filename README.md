@@ -20,9 +20,7 @@
 [download-image]: https://img.shields.io/npm/dm/egg-view-assets.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-view-assets
 
-<!--
-Description here.
--->
+Manage frontend assets in development and production.
 
 ## Install
 
@@ -32,27 +30,35 @@ $ npm i egg-view-assets --save
 
 ## Usage
 
+Add `egg-view-assets` as plugin
+
 ```js
 // {app_root}/config/plugin.js
-exports.viewAssets = {
+exports.assets = {
   enable: true,
   package: 'egg-view-assets',
 };
 ```
 
-## Configuration
+Configuration, you can see full example in [egg-ant-design-pro].
 
 ```js
 // {app_root}/config/config.default.js
-exports.viewAssets = {
+exports.view = {
+  mapping: {
+    '.js': 'assets',
+  },
+};
+
+exports.assets = {
+  devServer: {
+    command: 'roadhog dev',
+    port: 8000,
+  },
 };
 ```
 
-see [config/config.default.js](config/config.default.js) for more detail.
-
-## Example
-
-<!-- example here -->
+See [config/config.default.js](config/config.default.js) for more detail.
 
 ## Questions & Suggestions
 
@@ -61,3 +67,5 @@ Please open an issue [here](https://github.com/eggjs/egg/issues).
 ## License
 
 [MIT](LICENSE)
+
+[egg-ant-design-pro]: https://github.com/eggjs/egg-ant-design-pro
