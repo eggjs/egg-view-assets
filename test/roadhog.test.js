@@ -8,7 +8,7 @@ describe.skip('roadhog', () => {
   let app;
   before(() => {
     mock.env('local');
-    app = mock.app({
+    app = mock.cluster({
       baseDir: 'apps/tool-roadhog',
     });
     return app.ready();

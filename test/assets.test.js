@@ -15,9 +15,10 @@ describe('test/assets.test.js', () => {
     describe('local', () => {
       before(() => {
         mock.env('local');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets',
         });
+        app.debug();
         return app.ready();
       });
       after(() => app.close());
@@ -39,7 +40,7 @@ describe('test/assets.test.js', () => {
 
       before(() => {
         mock.env('prod');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets',
         });
         return app.ready();
@@ -65,7 +66,7 @@ describe('test/assets.test.js', () => {
     describe('local', () => {
       before(() => {
         mock.env('local');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets-template',
         });
         return app.ready();
@@ -119,7 +120,7 @@ describe('test/assets.test.js', () => {
       it('should throw when call renderString', () => {
         return app.httpRequest()
           .get('/renderString')
-          .expect(/Can\\&#39;t find viewEngine/)
+          .expect(/assets engine don&#39;t support renderString/)
           .expect(500);
       });
     });
@@ -127,7 +128,7 @@ describe('test/assets.test.js', () => {
     describe('prod', () => {
       before(() => {
         mock.env('prod');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/assets-template',
         });
         return app.ready();
@@ -152,7 +153,7 @@ describe('test/assets.test.js', () => {
     describe('local', () => {
       before(() => {
         mock.env('local');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/other-view-engine',
         });
         return app.ready();
@@ -174,7 +175,7 @@ describe('test/assets.test.js', () => {
     describe('prod', () => {
       before(() => {
         mock.env('prod');
-        app = mock.app({
+        app = mock.cluster({
           baseDir: 'apps/other-view-engine',
         });
         return app.ready();
@@ -199,7 +200,7 @@ describe('test/assets.test.js', () => {
 
     before(() => {
       mock.env('local');
-      app = mock.app({
+      app = mock.cluster({
         baseDir: 'apps/custom-assets-url',
       });
       return app.ready();
@@ -219,7 +220,7 @@ describe('test/assets.test.js', () => {
 
     before(() => {
       mock.env('local');
-      app = mock.app({
+      app = mock.cluster({
         baseDir: 'apps/custom-context-key',
       });
       return app.ready();

@@ -10,10 +10,12 @@ module.exports = appInfo => {
       templateViewEngine: '',
       contextKey: 'context',
       devServer: {
+        waitStart: false,
         command: '',
         port: null,
         env: {},
         debug: false,
+        timeout: 60 * 1000,
       },
     },
   };

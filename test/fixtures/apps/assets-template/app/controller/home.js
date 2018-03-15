@@ -29,7 +29,9 @@ class HomeController extends Controller {
   }
 
   async renderString() {
-    await this.ctx.renderString('index.js', { data: 1 });
+    await this.ctx.renderString('index.js', { data: 1 }, {
+      viewEngine: 'assets',
+    });
   }
 
 }

@@ -10,6 +10,12 @@ module.exports = agent => {
     if (err) agent.coreLogger.error('[egg-view-assets]', err.message);
   });
 
+  if (agent.config.assets.devServer.waitStart) {
+    agent.beforeStart(async () => {
+      await server.ready();
+    });
+  }
+
   agent.beforeClose(async () => {
     await server.close();
   });
