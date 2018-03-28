@@ -248,8 +248,8 @@ describe('test/assets.test.js', () => {
 
     it('should GET /', () => {
       return app.httpRequest()
-        .get('/?query=x%E2%80%A8x')
-        .expect(/<div id="[^"]+" style="display:none">\{"query":"x\u2028x"\}<\/div>/)
+        .get('/?query=<x%E2%80%A8x>')
+        .expect(/<div id="[^"]+" style="display:none">\{"query":"&lt;x\u2028x&gt;"\}<\/div>/)
         .expect(/window.context = JSON.parse\(document.getElementById\('[^']+'\).textContent \|\| '\{\}'\);/)
         .expect(200);
     });
