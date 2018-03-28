@@ -249,7 +249,7 @@ describe('test/assets.test.js', () => {
     it('should GET /', () => {
       return app.httpRequest()
         .get('/?query=x%E2%80%A8x')
-        .expect(/<template id="[^"]+" style="display:none">\{"query":"x\u2028x"\}<\/template>/)
+        .expect(/<div id="[^"]+" style="display:none">\{"query":"x\u2028x"\}<\/div>/)
         .expect(/window.context = JSON.parse\(document.getElementById\('[^']+'\).textContent \|\| '\{\}'\);/)
         .expect(200);
     });
