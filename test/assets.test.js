@@ -78,7 +78,7 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/{}<\/div>/)
+          .expect(/style="display:none"><\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(200);
       });
@@ -95,7 +95,7 @@ describe('test/assets.test.js', () => {
           .get('/options')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/{}<\/div>/)
+          .expect(/style="display:none"><\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(200);
       });
@@ -140,7 +140,7 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/index.b8e2efea.css"><\/link>/)
-          .expect(/{}<\/div>/)
+          .expect(/style="display:none"><\/div>/)
           .expect(/<script src="http:\/\/cdn.com\/index.c4ae6394.js"><\/script>/)
           .expect(200);
       });
