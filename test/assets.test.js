@@ -95,7 +95,7 @@ describe('test/assets.test.js', () => {
           .get('/options')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/style="display:none"><\/div>/)
+          .expect(/style="display:none">{}<\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(200);
       });
@@ -230,7 +230,7 @@ describe('test/assets.test.js', () => {
     it('should GET /', () => {
       return app.httpRequest()
         .get('/')
-        .expect(/<script>window.__context__ = {};<\/script>/)
+        .expect(/<script>window.__context__ =/)
         .expect(200);
     });
   });
