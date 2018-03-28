@@ -234,4 +234,24 @@ describe('test/assets.test.js', () => {
         .expect(200);
     });
   });
+
+  describe('context security', () => {
+    let app;
+
+    before(() => {
+      app = mock.cluster({
+        baseDir: 'apps/context-security',
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/?query=x%E2%80%A8x')
+        .expect(/<template id="[^"]+" style="display:none">\{"query":"x\u2028x"\}<\/template>/)
+        .expect(/window.context = JSON.parse\(document.getElementById\('[^']+'\).textContent \|\| '\{\}'\);/)
+        .expect(200);
+    });
+  });
 });
