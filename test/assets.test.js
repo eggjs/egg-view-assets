@@ -256,7 +256,7 @@ describe('test/assets.test.js', () => {
     });
   });
 
-  describe.only('publicPath', () => {
+  describe('publicPath', () => {
     let app;
 
     describe('local', () => {
