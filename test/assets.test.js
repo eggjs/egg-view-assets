@@ -3,6 +3,7 @@
 const path = require('path');
 const mock = require('egg-mock');
 const fs = require('mz/fs');
+const assert = require('assert');
 
 
 describe('test/assets.test.js', () => {
@@ -252,6 +253,108 @@ describe('test/assets.test.js', () => {
         .expect(/<div id="[^"]+" style="display:none">\{"query":"&lt;x\u2028x&gt;"\}<\/div>/)
         .expect(/window.context = JSON.parse\(document.getElementById\('[^']+'\).textContent \|\| '\{\}'\);/)
         .expect(200);
+    });
+  });
+
+  describe.only('publicPath', () => {
+    let app;
+
+    describe('local', () => {
+      before(() => {
+        mock.env('local');
+        app = mock.app({
+          baseDir: 'apps/custom-public-path',
+        });
+        return app.ready();
+      });
+      after(() => app.close());
+
+      it('should render with trailing /', () => {
+        mock(app.config.assets, 'publicPath', '/public/');
+
+        let ctx = app.mockContext();
+        ctx.helper.assets.setEntry('index.js');
+        let script = ctx.helper.assets.getScript();
+        assert(script.includes('__webpack_public_path__ = \'/\';'));
+        assert(script.includes('src="/index.js"'));
+        let style = ctx.helper.assets.getStyle();
+        assert(style.includes('href="/index.css"'));
+
+        ctx = app.mockContext();
+        script = ctx.helper.assets.getScript('index.js');
+        assert(script.includes('__webpack_public_path__ = \'/\';'));
+        assert(script.includes('src="/index.js"'));
+        style = ctx.helper.assets.getStyle('index.css');
+        assert(style.includes('href="/index.css"'));
+      });
+
+      it('should render without trailing /', () => {
+        mock(app.config.assets, 'publicPath', '/public');
+
+        let ctx = app.mockContext();
+        ctx.helper.assets.setEntry('index.js');
+        let script = ctx.helper.assets.getScript();
+        assert(script.includes('__webpack_public_path__ = \'/\';'));
+        assert(script.includes('src="/index.js"'));
+        let style = ctx.helper.assets.getStyle();
+        assert(style.includes('href="/index.css"'));
+
+        ctx = app.mockContext();
+        script = ctx.helper.assets.getScript('index.js');
+        assert(script.includes('__webpack_public_path__ = \'/\';'));
+        assert(script.includes('src="/index.js"'));
+        style = ctx.helper.assets.getStyle('index.css');
+        assert(style.includes('href="/index.css"'));
+      });
+    });
+
+    describe('prod', () => {
+      before(() => {
+        mock.env('prod');
+        app = mock.app({
+          baseDir: 'apps/custom-public-path',
+        });
+        return app.ready();
+      });
+      after(() => app.close());
+
+      it('should render with trailing /', () => {
+        mock(app.config.assets, 'publicPath', '/public/');
+
+        let ctx = app.mockContext();
+        ctx.helper.assets.setEntry('index.js');
+        let script = ctx.helper.assets.getScript();
+        assert(script.includes('__webpack_public_path__ = \'/public/\';'));
+        assert(script.includes('src="/public/index.js"'));
+        let style = ctx.helper.assets.getStyle();
+        assert(style.includes('href="/public/index.css"'));
+
+        ctx = app.mockContext();
+        script = ctx.helper.assets.getScript('index.js');
+        assert(script.includes('__webpack_public_path__ = \'/public/\';'));
+        assert(script.includes('src="/public/index.js"'));
+        style = ctx.helper.assets.getStyle('index.css');
+        assert(style.includes('href="/public/index.css"'));
+      });
+
+      it('should render without trailing /', () => {
+        mock(app.config.assets, 'publicPath', '/public');
+
+        let ctx = app.mockContext();
+        ctx.helper.assets.setEntry('index.js');
+        let script = ctx.helper.assets.getScript();
+        assert(script.includes('__webpack_public_path__ = \'/public/\';'));
+        assert(script.includes('src="/public/index.js"'));
+        let style = ctx.helper.assets.getStyle();
+        assert(style.includes('href="/public/index.css"'));
+
+        ctx = app.mockContext();
+        script = ctx.helper.assets.getScript('index.js');
+        assert(script.includes('__webpack_public_path__ = \'/public/\';'));
+        assert(script.includes('src="/public/index.js"'));
+        style = ctx.helper.assets.getStyle('index.css');
+        assert(style.includes('href="/public/index.css"'));
+      });
     });
   });
 });
