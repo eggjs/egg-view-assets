@@ -1,4 +1,11 @@
 
+1.0.2 / 2018-03-29
+==================
+
+**fixes**
+  * [[`3f02556`](http://github.com/eggjs/egg-view-assets/commit/3f0255680aa8f6460faf08957efdff184c781b3f)] - fix: publicPath should contains leading and trailing slash (#9) (Haoliang Gao <<sakura9515@gmail.com>>)
+  * [[`5db9e90`](http://github.com/eggjs/egg-view-assets/commit/5db9e906e85a414ae276e7de1033c1539aff8ea5)] - fix: more safe context when locals is from query (#8) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.0.1 / 2018-03-15
 ==================
 
