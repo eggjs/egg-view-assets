@@ -136,4 +136,29 @@ describe('test/dev_server.test.js', () => {
     app.expect('stderr', /spawn unknown ENOENT/);
     app.expect('stderr', /Run "unknown command" failed after 5s/);
   });
+
+  it('should check port when devServer is enabled', async () => {
+    mock.env('local');
+    app = mock.cluster({
+      baseDir: 'apps/dev-server-no-port',
+    });
+    // app.debug();
+    await app.ready();
+
+    app.expect('code', 1);
+    app.expect('stderr', /devServer.port is required when devServer is enabled/);
+  });
+
+  it('should not check port when devServer is disabled', async () => {
+    mock.env('local');
+    mock(process.env, 'DEV_SERVER_ENABLE', 'false');
+    app = mock.cluster({
+      baseDir: 'apps/dev-server-no-port',
+    });
+    app.debug();
+    await app.ready();
+
+    app.expect('code', 0);
+    app.expect('stdout', /egg started/);
+  });
 });

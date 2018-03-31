@@ -25,6 +25,7 @@ module.exports = appInfo => ({
     templateViewEngine: '',
     contextKey: 'context',
     devServer: {
+      enable: true,
       command: '',
       port: null,
       env: {},
