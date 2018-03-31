@@ -7,4 +7,7 @@ exports.view = {
   },
 };
 exports.assets = {
+  devServer: {
+    enable: false,
+  },
 };

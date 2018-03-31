@@ -200,7 +200,7 @@ describe('test/assets.test.js', () => {
     let app;
 
     before(() => {
-      mock.env('local');
+      mock.env('prod');
       app = mock.cluster({
         baseDir: 'apps/custom-assets-url',
       });
@@ -211,7 +211,7 @@ describe('test/assets.test.js', () => {
     it('should GET /', () => {
       return app.httpRequest()
         .get('/')
-        .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.css"><\/link>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.b8e2efea.css"><\/link>/)
         .expect(200);
     });
   });
