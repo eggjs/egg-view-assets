@@ -1,4 +1,10 @@
 
+1.0.3 / 2018-04-01
+==================
+
+**fixes**
+  * [[`f58d766`](http://github.com/eggjs/egg-view-assets/commit/f58d766907f6e18627a44d42b3513e41b71bcf09)] - fix: check port when devServer is enabled (#10) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.0.2 / 2018-03-29
 ==================
 
