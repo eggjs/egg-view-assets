@@ -1,4 +1,10 @@
 
+1.0.4 / 2018-04-01
+==================
+
+**fixes**
+  * [[`9d7fdac`](http://github.com/eggjs/egg-view-assets/commit/9d7fdac51c6799db63d948b37e94ad47a280a7c4)] - fix: should transform jsx to js (#11) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.0.3 / 2018-04-01
 ==================
 
