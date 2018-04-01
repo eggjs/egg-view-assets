@@ -9,6 +9,10 @@ class HomeController extends Controller {
     });
   }
 
+  async account() {
+    await this.ctx.render('account.jsx');
+  }
+
   async renderString() {
     await this.ctx.renderString('', {}, {
       viewEngine: 'assets',

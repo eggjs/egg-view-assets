@@ -34,6 +34,14 @@ describe('test/assets.test.js', () => {
           .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
           .expect(200);
       });
+
+      it('should GET jsx', () => {
+        return app.httpRequest()
+          .get('/account')
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/account.css"><\/link>/)
+          .expect(/<script src="http:\/\/127.0.0.1:8000\/account.js"><\/script>/)
+          .expect(200);
+      });
     });
 
     describe('production', () => {
