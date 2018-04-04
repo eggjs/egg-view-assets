@@ -365,4 +365,41 @@ describe('test/assets.test.js', () => {
       });
     });
   });
+
+  describe('manifest checking', () => {
+    let app;
+    afterEach(() => app.close());
+
+    it('should check manifest.json on prod', async () => {
+      mock.env('prod');
+      app = mock.app({
+        baseDir: 'apps/no-manifest',
+      });
+      // app.debug();
+      try {
+        await app.ready();
+        throw new Error('should not run');
+      } catch (err) {
+        assert(err.message === path.join(__dirname, 'fixtures/apps/no-manifest/config/manifest.json') + ' is required');
+      }
+    });
+
+    it('should not check manifest.json on local', async () => {
+      mock.env('local');
+      app = mock.app({
+        baseDir: 'apps/no-manifest',
+      });
+      // app.debug();
+      await app.ready();
+    });
+
+    it('should not check manifest.json on unittest', async () => {
+      mock.env('unittest');
+      app = mock.app({
+        baseDir: 'apps/no-manifest',
+      });
+      // app.debug();
+      await app.ready();
+    });
+  });
 });
