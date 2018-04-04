@@ -1,4 +1,10 @@
 
+1.1.0 / 2018-04-04
+==================
+
+**features**
+  * [[`772164a`](http://github.com/eggjs/egg-view-assets/commit/772164a3669610659cd43614caf7825a74f30c65)] - feat: unittest environment is same as local (#12) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.0.4 / 2018-04-01
 ==================
 
