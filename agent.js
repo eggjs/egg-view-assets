@@ -3,8 +3,10 @@
 const assert = require('assert');
 const DevServer = require('./lib/dev_server');
 
-module.exports = agent => {
-  if (!agent.config.assets.isLocal) return;
+module.exports = agent => startDevServer(agent);
+
+function startDevServer(agent) {
+  if (!agent.config.assets.isLocalOrUnittest) return;
   if (!agent.config.assets.devServer.enable) return;
 
   assert(agent.config.assets.devServer.port, 'devServer.port is required when devServer is enabled');
@@ -23,4 +25,4 @@ module.exports = agent => {
   agent.beforeClose(async () => {
     await server.close();
   });
-};
+}

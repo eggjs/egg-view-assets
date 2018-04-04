@@ -18,7 +18,7 @@ module.exports = appInfo => ({
    * @property {Boolean} devServer.waitStart - whether wait devServer starting
    */
   assets: {
-    isLocal: appInfo.env === 'local',
+    isLocalOrUnittest: appInfo.env === 'local' || appInfo.env === 'unittest',
     url: '',
     publicPath: '',
     templatePath: '',
