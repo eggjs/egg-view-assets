@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "await-event": "^2.1.0",
+    "cross-spawn": "^6.0.5",
     "debug": "^3.1.0",
     "detect-port": "^1.2.2",
     "mz": "^2.7.0",
@@ -26,10 +27,10 @@
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
-    "egg": "^2.5.0",
-    "egg-bin": "^4.5.0",
+    "egg": "^2.6.1",
+    "egg-bin": "^4.6.3",
     "egg-ci": "^1.8.0",
-    "egg-mock": "^3.16.0",
+    "egg-mock": "^3.17.0",
     "egg-view-ejs": "^2.0.0",
     "egg-view-nunjucks": "^2.1.6",
     "eslint": "^4.19.1",

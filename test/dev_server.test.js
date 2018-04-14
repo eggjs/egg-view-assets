@@ -133,7 +133,7 @@ describe('test/dev_server.test.js', () => {
     app.debug();
     await app.ready();
 
-    app.expect('stderr', /spawn unknown ENOENT/);
+    app.expect('stderr', /sh: unknown: command not found/);
     app.expect('stderr', /Run "unknown command" failed after 5s/);
   });
 
