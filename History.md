@@ -1,4 +1,12 @@
 
+1.1.1 / 2018-04-15
+==================
+
+**fixes**
+  * [[`6d8793b`](http://github.com/eggjs/egg-view-assets/commit/6d8793b43e98618b2be76101011ad8732906f114)] - fix: atob browser compatible (#15) (Haoliang Gao <<sakura9515@gmail.com>>)
+  * [[`2475b7c`](http://github.com/eggjs/egg-view-assets/commit/2475b7c54fe088e2469181eb63f1a48c7c94fdbf)] - fix: command can be run on Windows (#13) (Haoliang Gao <<sakura9515@gmail.com>>)
+  * [[`ab29dee`](http://github.com/eggjs/egg-view-assets/commit/ab29deed14e0b6d266fc5a90b8f46950ce096431)] - fix: set context data more safely (#14) (Yiyu He <<dead_horse@qq.com>>)
+
 1.1.0 / 2018-04-04
 ==================
 
