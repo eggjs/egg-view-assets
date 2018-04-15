@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+  <head>
+    {{ helper.assets.getStyle() | safe }}
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>window.atob = undefined;</script>
+    {{ helper.assets.getContext() | safe }}
+    {{ helper.assets.getScript() | safe }}
+  </body>
+</html>
