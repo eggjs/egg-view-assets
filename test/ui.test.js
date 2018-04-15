@@ -27,6 +27,13 @@ describe('test/ui.test.js', () => {
       .expect(200);
   });
 
+  it('should render html', async () => {
+    await app.httpRequest()
+      .get('/')
+      .expect(/var atob = window.atob || function\(input\) {/)
+      .expect(200);
+  });
+
   it('should console', async () => {
     const browser = await puppeteer.launch({
       args: [ '--no-sandbox', '--disable-setuid-sandbox' ],
