@@ -21,7 +21,7 @@ describe('test/dev_server.test.js', () => {
     });
     app.debug();
     await app.ready();
-    const reg = new RegExp(`Run "node ${path.join(__dirname, 'fixtures/apps/mocktool/server')}" success, listen on 8000`);
+    const reg = new RegExp(`Run "node ${path.join(__dirname, 'fixtures/apps/mocktool/server.js')}" success, listen on 8000`);
     app.expect('stdout', reg);
 
     await app.close();
