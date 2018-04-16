@@ -30,7 +30,7 @@ describe('test/ui.test.js', () => {
   it('should render html', async () => {
     await app.httpRequest()
       .get('/')
-      .expect(/var atob = window.atob || function\(input\) {/)
+      .expect(/function _atob\(input\)/)
       .expect(200);
   });
 

@@ -259,7 +259,7 @@ describe('test/assets.test.js', () => {
       return app.httpRequest()
         .get('/?query=<x%E2%80%A8x>')
         .expect(/<div id="[^"]+" style="display:none">JTdCJTIycXVlcnklMjIlM0ElMjIlM0N4JUUyJTgwJUE4eCUzRSUyMiU3RA==<\/div>/)
-        .expect(/window\.context = JSON\.parse\(decodeURIComponent\(atob\(document\.getElementById\('[^']+'\).textContent\)\) \|\| '\{\}'\);/)
+        .expect(/window\.context = decode\(document\.getElementById\('[^']+'\).textContent\);/)
         .expect(200);
     });
   });
