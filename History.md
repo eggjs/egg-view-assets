@@ -1,4 +1,10 @@
 
+1.1.2 / 2018-04-16
+==================
+
+**others**
+  * [[`9b32a6e`](http://github.com/eggjs/egg-view-assets/commit/9b32a6ed4e2219e323946fb987e900a1477d66d9)] - refactor: atob should be minified (#16) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.1.1 / 2018-04-15
 ==================
 
