@@ -5,6 +5,7 @@
   </head>
   <body>
     <div id="root"></div>
+    {{ helper.assets.getHtml('./bigfish.html') | safe }}
     {{ helper.assets.getContext() | safe }}
     {{ helper.assets.getScript() | safe }}
   </body>
