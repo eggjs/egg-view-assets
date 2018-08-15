@@ -402,4 +402,50 @@ describe('test/assets.test.js', () => {
       await app.ready();
     });
   });
+
+  describe('complex manifest', () => {
+    let app;
+    before(() => {
+      mock.env('default');
+      app = mock.app({
+        baseDir: 'apps/complex-manifest',
+      });
+      return app.ready();
+    });
+
+    after(() => app.close());
+    afterEach(mock.restore);
+
+    it('should publicPath work', () => {
+      const ctx = app.mockContext();
+      ctx.helper.assets.setEntry('index.js');
+      const script = ctx.helper.assets.getScript();
+      assert(script.includes('__webpack_public_path__ = \'/public\/\';'));
+      assert(script.includes('src="/public/index.js"'));
+    });
+
+    it('should contain host if setting assets.url', () => {
+      mock(app.config.assets, 'url', 'http://remotehost');
+      const ctx = app.mockContext();
+      ctx.helper.assets.setEntry('index.js');
+      const script = ctx.helper.assets.getScript();
+      assert(script.includes('__webpack_public_path__ = \'/public\/\';'));
+      assert(script.includes('src="http://remotehost/public/index.js"'));
+      const style = ctx.helper.assets.getStyle();
+      assert(style.includes('href="http://remotehost/index.css"'));
+    });
+
+    it('should assets.publicPath not work if resource path is a absolute url', () => {
+      const ctx = app.mockContext();
+      const style = ctx.helper.assets.getStyle('index.css');
+      assert(style.includes('href="/index.css"'));
+    });
+
+    it('should assets.url not work if resource path is a complete url', () => {
+      mock(app.config.assets, 'url', 'http://remotehost');
+      const ctx = app.mockContext();
+      const script = ctx.helper.assets.getScript('page1.js');
+      assert(script.includes('src="http://cdn.com/page1.js"'));
+    });
+  });
 });

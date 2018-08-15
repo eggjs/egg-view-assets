@@ -1,0 +1,5 @@
+{
+  "index.js": "index.js",
+  "index.css": "/index.css",
+  "page1.js": "http://cdn.com/page1.js"
+}
