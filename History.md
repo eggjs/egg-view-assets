@@ -1,4 +1,10 @@
 
+1.2.0 / 2018-08-15
+==================
+
+**features**
+  * [[`6d9be84`](http://github.com/eggjs/egg-view-assets/commit/6d9be84495ae1e789e20276f33f184e736cf7e86)] - feat: manifest add absolute path and complete path support (#20) (仙森 <<dapixp@gmail.com>>)
+
 1.1.2 / 2018-04-16
 ==================
 
