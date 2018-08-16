@@ -6,7 +6,6 @@ const mock = require('egg-mock');
 const assert = require('assert');
 const sleep = require('mz-modules/sleep');
 
-
 describe('test/dev_server.test.js', () => {
 
   let app;

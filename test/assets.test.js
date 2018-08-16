@@ -5,7 +5,6 @@ const mock = require('egg-mock');
 const fs = require('mz/fs');
 const assert = require('assert');
 
-
 describe('test/assets.test.js', () => {
 
   afterEach(mock.restore);
@@ -29,9 +28,11 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/style="display:none">JTdCJTIyZGF0YSUyMiUzQTElN0Q=<\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
 
@@ -61,9 +62,11 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
-          .expect(/style="display:none">JTdCJTIyZGF0YSUyMiUzQTElN0Q=<\/div>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
     });
@@ -87,15 +90,19 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/style="display:none"><\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
 
       it('should render context', () => {
         return app.httpRequest()
           .get('/context')
-          .expect(/style="display:none">JTdCJTIyZGF0YSUyMiUzQTElN0Q=<\/div>/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
 
@@ -104,8 +111,10 @@ describe('test/assets.test.js', () => {
           .get('/options')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/style="display:none">JTdCJTdE<\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
 
@@ -115,14 +124,18 @@ describe('test/assets.test.js', () => {
 
         await app.httpRequest()
           .get('/cache')
-          .expect(/JTdCJTIyZGF0YSUyMiUzQTElN0Q=/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
 
         await fs.writeFile(template, 'override');
 
         await app.httpRequest()
           .get('/cache')
-          .expect(/JTdCJTIyZGF0YSUyMiUzQTElN0Q=/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
 
@@ -149,8 +162,10 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/index.b8e2efea.css"><\/link>/)
-          .expect(/style="display:none"><\/div>/)
           .expect(/<script src="http:\/\/cdn.com\/index.c4ae6394.js"><\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
     });
@@ -173,10 +188,12 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/')
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
-          .expect(/style="display:none">JTdCJTIyZGF0YSUyMiUzQTElN0Q=<\/div>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/127.0.0.1:8000\/';<\/script/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
     });
@@ -195,10 +212,12 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/')
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
-          .expect(/style="display:none">JTdCJTIyZGF0YSUyMiUzQTElN0Q=<\/div>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/cdn.com\/app\/public\/';<\/script/)
+          .expect(res => {
+            assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
           .expect(200);
       });
     });
@@ -258,8 +277,9 @@ describe('test/assets.test.js', () => {
     it('should GET /', () => {
       return app.httpRequest()
         .get('/?query=<x%E2%80%A8x>')
-        .expect(/<div id="[^"]+" style="display:none">JTdCJTIycXVlcnklMjIlM0ElMjIlM0N4JUUyJTgwJUE4eCUzRSUyMiU3RA==<\/div>/)
-        .expect(/window\.context = decode\(document\.getElementById\('[^']+'\).textContent\);/)
+        .expect(res => {
+          assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22query%22%3A%22%3Cx%E2%80%A8x%3E%22%7D"));})()<\/script>'));
+        })
         .expect(200);
     });
   });

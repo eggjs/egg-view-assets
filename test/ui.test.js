@@ -5,7 +5,6 @@ const puppeteer = require('puppeteer');
 const sleep = require('mz-modules/sleep');
 const assert = require('assert');
 
-
 describe('test/ui.test.js', () => {
   let app;
   before(() => {
@@ -30,7 +29,9 @@ describe('test/ui.test.js', () => {
   it('should render html', async () => {
     await app.httpRequest()
       .get('/')
-      .expect(/function _atob\(input\)/)
+      .expect(res => {
+        assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+      })
       .expect(200);
   });
 
