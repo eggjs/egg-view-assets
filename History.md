@@ -1,4 +1,10 @@
 
+1.3.0 / 2018-08-20
+==================
+
+**others**
+  * [[`0815337`](http://github.com/eggjs/egg-view-assets/commit/0815337586c10ed393786bb7c3ad8f08242a9135)] - refactor: no need to encode context with base64 (#21) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.2.0 / 2018-08-15
 ==================
 
