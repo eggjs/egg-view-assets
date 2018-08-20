@@ -62,7 +62,8 @@
     "app.js"
   ],
   "ci": {
-    "version": "8, 9"
+    "version": "8, 10",
+    "license": true
   },
   "repository": {
     "type": "git",
