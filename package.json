@@ -6,7 +6,7 @@
       "view"
     ]
   },
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Manage frontend assets in development and production",
   "keywords": [
     "egg",

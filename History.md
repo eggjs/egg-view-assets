@@ -1,4 +1,14 @@
 
+1.4.0 / 2019-01-06
+==================
+
+**features**
+  * [[`59d20a0`](http://github.com/eggjs/egg-view-assets/commit/59d20a0e7f1451aee14cb1a5117e8cda2d999498)] - feat: auto check port with autoPort (#24) (Haoliang Gao <<sakura9515@gmail.com>>)
+
+**others**
+  * [[`bf05a99`](http://github.com/eggjs/egg-view-assets/commit/bf05a99da9661aa731c6938ec7e8443dd381d2eb)] - refactor: use inherit instead of pipe (#22) (Haoliang Gao <<sakura9515@gmail.com>>)
+  * [[`d233b74`](http://github.com/eggjs/egg-view-assets/commit/d233b74cc38648a310146802385031d001d971e9)] - test: set proc null when exit by self (#23) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.3.0 / 2018-08-20
 ==================
 
