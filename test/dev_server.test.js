@@ -145,7 +145,7 @@ describe('test/dev_server.test.js', () => {
     await app.ready();
 
     app.expect('code', 1);
-    app.expect('stderr', /devServer.port is required when devServer is enabled/);
+    app.expect('stderr', /port or autoPort is required when devServer is enabled/);
   });
 
   it('should not check port when devServer is disabled', async () => {
@@ -159,5 +159,28 @@ describe('test/dev_server.test.js', () => {
 
     app.expect('code', 0);
     app.expect('stdout', /egg started/);
+  });
+
+  it('should auto check port with autoPort', async () => {
+    mock.env('local');
+    const app1 = mock.cluster({
+      baseDir: 'apps/autoport',
+    });
+    app1.debug();
+    await app1.ready();
+
+    app1.expect('stdout', /\[server] listening 10000/);
+
+    app = mock.cluster({
+      baseDir: 'apps/autoport',
+    });
+    app.debug();
+    try {
+      await app.ready();
+
+      app.expect('stdout', /\[server] listening 10001/);
+    } finally {
+      await app1.close();
+    }
   });
 });
