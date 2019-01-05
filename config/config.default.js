@@ -27,6 +27,7 @@ module.exports = appInfo => ({
     devServer: {
       enable: true,
       command: '',
+      autoPort: false,
       port: null,
       env: {},
       debug: false,

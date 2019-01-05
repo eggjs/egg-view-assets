@@ -9,7 +9,7 @@ function startDevServer(agent) {
   if (!agent.config.assets.isLocalOrUnittest) return;
   if (!agent.config.assets.devServer.enable) return;
 
-  assert(agent.config.assets.devServer.port, 'devServer.port is required when devServer is enabled');
+  assert(agent.config.assets.devServer.autoPort || agent.config.assets.devServer.port, 'port or autoPort is required when devServer is enabled');
 
   const server = new DevServer(agent);
   server.ready(err => {

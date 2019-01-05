@@ -3,6 +3,8 @@
 const http = require('http');
 const Koa = require('koa');
 
+const port = Number(process.argv[2]) || 8000;
+
 const app = new Koa();
 app.use(async ctx => {
   ctx.body = 'done';
@@ -14,11 +16,11 @@ server.once('error', err => {
   process.exit(1);
 });
 server.once('listening', () => {
-  console.info('[server] listening 8000');
+  console.info('[server] listening ' + port);
 });
 
-console.info('[server] listen 8000');
-server.listen(8000);
+console.info('[server] listen ' + port);
+server.listen(port);
 
 process.once('SIGTERM', () => {
   console.log('[server] server stopped');
