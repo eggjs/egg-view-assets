@@ -1,4 +1,10 @@
 
+1.4.2 / 2019-01-07
+==================
+
+**features**
+  * [[`f6e9fb7`](http://github.com/eggjs/egg-view-assets/commit/f6e9fb7b51435516ce9d7f20a8de2e7a62b87c61)] - feat(devServer): support autoport in env (#26) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.4.1 / 2019-01-07
 ==================
 
