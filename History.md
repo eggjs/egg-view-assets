@@ -1,4 +1,10 @@
 
+1.4.1 / 2019-01-07
+==================
+
+**fixes**
+  * [[`9378984`](http://github.com/eggjs/egg-view-assets/commit/9378984ad71465eb9cc46beba4936e8bb95f97f6)] - fix: port should be paased from agent to app (#25) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.4.0 / 2019-01-06
 ==================
 
