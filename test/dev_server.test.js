@@ -166,7 +166,7 @@ describe('test/dev_server.test.js', () => {
     const app1 = mock.cluster({
       baseDir: 'apps/autoport',
     });
-    app1.debug();
+    // app1.debug();
     await app1.ready();
 
     await app1.httpRequest()
