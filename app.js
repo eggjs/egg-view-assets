@@ -13,7 +13,6 @@ module.exports = app => {
     if (assetsConfig.devServer.autoPort === true) {
       try {
         port = fs.readFileSync(assetsConfig.devServer.portPath, 'utf8');
-        console.log(port);
       } catch (err) {
         // istanbul ignore next
         throw new Error('check autoPort fail');
