@@ -169,6 +169,11 @@ describe('test/dev_server.test.js', () => {
     app1.debug();
     await app1.ready();
 
+    await app1.httpRequest()
+      .get('/')
+      .expect(/http:\/\/127.0.0.1:\d+\/index.js/)
+      .expect(200);
+
     app1.expect('stdout', /\[server] listening 10000/);
 
     app = mock.cluster({
