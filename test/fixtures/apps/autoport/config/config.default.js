@@ -14,7 +14,9 @@ exports.assets = {
     waitStart: true,
     autoPort: true,
     command: 'node ' + path.join(__dirname, '../../mocktool/server.js') + ' {port}',
-    env: {},
+    env: {
+      SOCKET_SERVER: 'http://127.0.0.1:{port}',
+    },
     debug: true,
   },
 };
