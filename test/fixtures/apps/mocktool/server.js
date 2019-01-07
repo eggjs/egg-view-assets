@@ -5,6 +5,8 @@ const Koa = require('koa');
 
 const port = Number(process.argv[2]) || 8000;
 
+console.info('[server] SOCKET_SERVER: ' + process.env.SOCKET_SERVER);
+
 const app = new Koa();
 app.use(async ctx => {
   ctx.body = 'done';

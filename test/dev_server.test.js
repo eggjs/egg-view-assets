@@ -175,11 +175,12 @@ describe('test/dev_server.test.js', () => {
       .expect(200);
 
     app1.expect('stdout', /\[server] listening 10000/);
+    app1.expect('stdout', /\[server] SOCKET_SERVER: http:\/\/127.0.0.1:10000/);
 
     app = mock.cluster({
       baseDir: 'apps/autoport',
     });
-    app.debug();
+    // app.debug();
     try {
       await app.ready();
 
