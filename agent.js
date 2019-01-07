@@ -6,17 +6,19 @@ const DevServer = require('./lib/dev_server');
 module.exports = agent => startDevServer(agent);
 
 function startDevServer(agent) {
-  if (!agent.config.assets.isLocalOrUnittest) return;
-  if (!agent.config.assets.devServer.enable) return;
+  const assetsConfig = agent.config.assets;
 
-  assert(agent.config.assets.devServer.autoPort || agent.config.assets.devServer.port, 'port or autoPort is required when devServer is enabled');
+  if (!assetsConfig.isLocalOrUnittest) return;
+  if (!assetsConfig.devServer.enable) return;
+
+  assert(assetsConfig.devServer.autoPort || assetsConfig.devServer.port, 'port or autoPort is required when devServer is enabled');
 
   const server = new DevServer(agent);
   server.ready(err => {
     if (err) agent.coreLogger.error('[egg-view-assets]', err.message);
   });
 
-  if (agent.config.assets.devServer.waitStart) {
+  if (assetsConfig.devServer.waitStart) {
     agent.beforeStart(async () => {
       await server.ready();
     });

@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+
 module.exports = appInfo => ({
   /**
    * assets options
@@ -29,6 +31,7 @@ module.exports = appInfo => ({
       command: '',
       autoPort: false,
       port: null,
+      portPath: path.join(appInfo.baseDir, 'run/assetsPort'),
       env: {},
       debug: false,
       timeout: 60 * 1000,
