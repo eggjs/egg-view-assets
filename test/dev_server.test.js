@@ -171,7 +171,11 @@ describe('test/dev_server.test.js', () => {
 
     await app1.httpRequest()
       .get('/')
-      .expect(/http:\/\/127.0.0.1:\d+\/index.js/)
+      .expect(/http:\/\/127.0.0.1:10000\/index.js/)
+      .expect(200);
+    await app1.httpRequest()
+      .get('/port')
+      .expect('10000')
       .expect(200);
 
     app1.expect('stdout', /\[server] listening 10000/);
