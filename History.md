@@ -1,4 +1,11 @@
 
+1.4.3 / 2019-01-08
+==================
+
+**fixes**
+  * [[`f5966ec`](http://github.com/eggjs/egg-view-assets/commit/f5966eca57fcfe5819617e264555ba00c9c6c95b)] - fix(devServer): reset port when app get port from agent (#28) (Haoliang Gao <<sakura9515@gmail.com>>)
+  * [[`a5866bc`](http://github.com/eggjs/egg-view-assets/commit/a5866bc0b47a0df4d024f44b9fc05d39494fcf47)] - fix: remove unnecessary console (#27) (Haoliang Gao <<sakura9515@gmail.com>>)
+
 1.4.2 / 2019-01-07
 ==================
 
