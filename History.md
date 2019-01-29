@@ -1,4 +1,10 @@
 
+1.4.4 / 2019-01-29
+==================
+
+**fixes**
+  * [[`8f0092e`](http://github.com/eggjs/egg-view-assets/commit/8f0092ef4e4dd33b63dbf836bdad72bc7a0b88be)] - fix: use w3c valid link format (#29) (fengmk2 <<fengmk2@gmail.com>>)
+
 1.4.3 / 2019-01-08
 ==================
 
