@@ -27,7 +27,7 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/')
           .expect(/<div id="root"><\/div>/)
-          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
           .expect(res => {
@@ -39,7 +39,7 @@ describe('test/assets.test.js', () => {
       it('should GET jsx', () => {
         return app.httpRequest()
           .get('/account')
-          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/account.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/account.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/account.js"><\/script>/)
           .expect(200);
       });
@@ -61,7 +61,7 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/')
           .expect(/<div id="root"><\/div>/)
-          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css" \/>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
           .expect(res => {
@@ -89,7 +89,7 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/')
           .expect(/<div id="root"><\/div>/)
-          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%7D"));})()<\/script>'));
@@ -110,7 +110,7 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/options')
           .expect(/<div id="root"><\/div>/)
-          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%7D"));})()<\/script>'));
@@ -161,7 +161,7 @@ describe('test/assets.test.js', () => {
         return app.httpRequest()
           .get('/')
           .expect(/<div id="root"><\/div>/)
-          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/index.b8e2efea.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/index.b8e2efea.css" \/>/)
           .expect(/<script src="http:\/\/cdn.com\/index.c4ae6394.js"><\/script>/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%7D"));})()<\/script>'));
@@ -187,7 +187,7 @@ describe('test/assets.test.js', () => {
       it('should GET /', () => {
         return app.httpRequest()
           .get('/')
-          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/127.0.0.1:8000\/';<\/script/)
@@ -211,7 +211,7 @@ describe('test/assets.test.js', () => {
       it('should GET /', () => {
         return app.httpRequest()
           .get('/')
-          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css"><\/link>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css" \/>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
           .expect(/<script>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/cdn.com\/app\/public\/';<\/script/)
@@ -238,7 +238,7 @@ describe('test/assets.test.js', () => {
     it('should GET /', () => {
       return app.httpRequest()
         .get('/')
-        .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.b8e2efea.css"><\/link>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.b8e2efea.css" \/>/)
         .expect(200);
     });
   });
