@@ -25,6 +25,7 @@ module.exports = appInfo => ({
     publicPath: '',
     templatePath: '',
     templateViewEngine: '',
+    crossorigin: false,
     contextKey: 'context',
     devServer: {
       enable: true,
