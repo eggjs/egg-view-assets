@@ -468,4 +468,25 @@ describe('test/assets.test.js', () => {
       assert(script.includes('src="http://cdn.com/page1.js"'));
     });
   });
+
+  describe('support crossorigin', () => {
+    let app;
+    before(() => {
+      mock.env('default');
+      app = mock.app({
+        baseDir: 'apps/crossorigin',
+      });
+      return app.ready();
+    });
+
+    after(() => app.close());
+    afterEach(mock.restore);
+
+    it('should works', () => {
+      const ctx = app.mockContext();
+      ctx.helper.assets.setEntry('index.js');
+      const script = ctx.helper.assets.getScript();
+      assert(script.includes('crossorigin'));
+    });
+  });
 });

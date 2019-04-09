@@ -10,6 +10,7 @@ module.exports = appInfo => ({
    * @property {String} publicPath - the base path of the assets
    * @property {String} templatePath - the file path of template rendering html
    * @property {String} templateViewEngine - the view engine for rendering template
+   * @property {Boolean} crossorigin - if script is cross origin set this config to true
    * @property {Boolean} contextKey - the property name of context, default is `context`
    * @property {Boolean} devServer - configuration of local assets server
    * @property {Boolean} devServer.command - a command for starting a server, such as `webpack`
@@ -25,6 +26,7 @@ module.exports = appInfo => ({
     publicPath: '',
     templatePath: '',
     templateViewEngine: '',
+    crossorigin: false,
     contextKey: 'context',
     devServer: {
       enable: true,
