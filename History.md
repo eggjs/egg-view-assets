@@ -1,4 +1,10 @@
 
+1.5.0 / 2019-04-09
+==================
+
+**features**
+  * [[`226de2e`](http://github.com/eggjs/egg-view-assets/commit/226de2e5ed9d89bac203ead5a47f2a91fd9158ad)] - feat: script support crossorigin attribute (#30) (仙森 <<dapixp@gmail.com>>)
+
 1.4.4 / 2019-01-29
 ==================
 
