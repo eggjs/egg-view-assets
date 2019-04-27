@@ -489,4 +489,33 @@ describe('test/assets.test.js', () => {
       assert(script.includes('crossorigin'));
     });
   });
+
+  describe('should insert webpack global variable just once', () => {
+    let app;
+    before(() => {
+      mock.env('default');
+      app = mock.app({
+        baseDir: 'apps/multiple-getscript',
+      });
+      return app.ready();
+    });
+
+    after(() => app.close());
+    afterEach(mock.restore);
+
+    it('should works', () => {
+      const ctx = app.mockContext();
+
+      const script = ctx.helper.assets.getScript('vendor.js');
+      assert(script.includes('__webpack_public_path__ = \'/\';'));
+      assert(script.includes('src="/vendor.js"'));
+
+      [ 'a.js', 'b.js', 'c.js' ].forEach(file => {
+        const anotherScript = ctx.helper.assets.getScript(file);
+        assert(!anotherScript.includes('__webpack_public_path__'));
+        assert(anotherScript.includes(`src="/${file}"`));
+      });
+
+    });
+  });
 });
