@@ -23,12 +23,14 @@ module.exports = app => {
     if (!assetsConfig.url) {
       assetsConfig.url = 'http://127.0.0.1:' + port;
     }
-    
   }
 
   // it should check manifest.json on deployment
   if (!assetsConfig.isLocalOrUnittest) {
-    const manifestPath = path.join(app.config.baseDir, 'config/manifest.json');
+    const manifestPath = path.join(
+      app.config.baseDir,
+      'config/manifest.json'
+    );
     assert(fs.existsSync(manifestPath), `${manifestPath} is required`);
     assetsConfig.manifest = require(manifestPath);
   }
