@@ -22,6 +22,8 @@ module.exports = app => {
     // if not set url,it will be `127.0.0.1:${devServer.port}`
     if (!assetsConfig.url) {
       assetsConfig.url = 'http://127.0.0.1:' + port;
+    } else {
+      assetsConfig.url = assetsConfig.url + ':' + port;
     }
   }
 
