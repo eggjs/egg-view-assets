@@ -243,6 +243,26 @@ describe('test/assets.test.js', () => {
     });
   });
 
+  describe('custom assets.url at local', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.cluster({
+        baseDir: 'apps/custom-assets-url',
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<link rel="stylesheet" href="https:\/\/localhost:8000\/index.css" \/>/)
+        .expect(200);
+    });
+  });
+
   describe('custom contextKey', () => {
     let app;
 

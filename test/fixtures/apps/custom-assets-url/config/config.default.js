@@ -9,6 +9,7 @@ exports.view = {
   },
 };
 exports.assets = {
+  url: 'https://localhost:8000',
   devServer: {
     waitStart: true,
     command: 'node ' + path.join(__dirname, '../../mocktool/server.js'),

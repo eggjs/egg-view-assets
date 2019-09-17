@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
+const URL = require('url').URL;
 const AssetsView = require('./lib/assets_view');
 
 module.exports = app => {
@@ -19,7 +20,9 @@ module.exports = app => {
         throw new Error('check autoPort fail');
       }
     }
-    assetsConfig.url = 'http://127.0.0.1:' + port;
+    const url = new URL(assetsConfig.url || 'http://127.0.0.1');
+    url.port = port;
+    assetsConfig.url = url.toString().replace(/\/$/, '');
   }
 
   // it should check manifest.json on deployment
