@@ -6,7 +6,7 @@ module.exports = appInfo => ({
   /**
    * assets options
    * @member Config#assets
-   * @property {String} url - the host of the assets, it will be `127.0.0.1:${devServer.port}` in development.
+   * @property {String} url - the host of the assets, it will be `http://127.0.0.1:${devServer.port}` in development.
    * @property {String} publicPath - the base path of the assets
    * @property {String} templatePath - the file path of template rendering html
    * @property {String} templateViewEngine - the view engine for rendering template

@@ -4,6 +4,7 @@ const path = require('path');
 const mock = require('egg-mock');
 const fs = require('mz/fs');
 const assert = require('assert');
+const urllib = require('urllib');
 
 describe('test/assets.test.js', () => {
 
@@ -240,6 +241,34 @@ describe('test/assets.test.js', () => {
         .get('/')
         .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.b8e2efea.css" \/>/)
         .expect(200);
+    });
+  });
+
+  describe('https assets.url', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.cluster({
+        baseDir: 'apps/https',
+        port: 8443,
+        https: {
+          cert: path.join(__dirname, 'fixtures/apps/https/server.cert'),
+          key: path.join(__dirname, 'fixtures/apps/https/server.key'),
+        },
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return urllib.request('https://127.0.0.1:8443', {
+        dataType: 'text',
+        rejectUnauthorized: false,
+      }).then(response => {
+        assert(response.status === 200);
+        assert(response.data.includes('https:\/\/127.0.0.1:8000\/index.css'));
+      });
     });
   });
 

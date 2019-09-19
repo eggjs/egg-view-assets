@@ -19,7 +19,8 @@ module.exports = app => {
         throw new Error('check autoPort fail');
       }
     }
-    assetsConfig.url = 'http://127.0.0.1:' + port;
+    const protocol = app.options.https ? 'https' : 'http';
+    assetsConfig.url = `${protocol}://127.0.0.1:${port}`;
   }
 
   // it should check manifest.json on deployment
