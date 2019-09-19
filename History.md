@@ -1,4 +1,10 @@
 
+1.6.0 / 2019-09-19
+==================
+
+**features**
+  * [[`287aedb`](http://github.com/eggjs/egg-view-assets/commit/287aedb4e1ee58861e76198a364e4ff9d7122d92)] - feat: set protocol according to app.options.https (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.5.0 / 2019-04-09
 ==================
 
