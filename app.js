@@ -9,6 +9,7 @@ module.exports = app => {
   const assetsConfig = app.config.assets;
 
   if (assetsConfig.devServer.enable && assetsConfig.isLocalOrUnittest) {
+    const host = assetsConfig.devServer.host || '127.0.0.1';
     let port = assetsConfig.devServer.port;
     if (assetsConfig.devServer.autoPort === true) {
       try {
@@ -20,7 +21,7 @@ module.exports = app => {
       }
     }
     const protocol = app.options.https ? 'https' : 'http';
-    assetsConfig.url = `${protocol}://127.0.0.1:${port}`;
+    assetsConfig.url = `${protocol}://${host}:${port}`;
   }
 
   // it should check manifest.json on deployment
