@@ -5,6 +5,7 @@ const mock = require('egg-mock');
 const fs = require('mz/fs');
 const assert = require('assert');
 const urllib = require('urllib');
+const address = require('address');
 
 describe('test/assets.test.js', () => {
 
@@ -244,7 +245,7 @@ describe('test/assets.test.js', () => {
     });
   });
 
-  describe('https assets.url', () => {
+  describe('https assets.url with dynamicLocalIP', () => {
     let app;
 
     before(() => {
@@ -267,7 +268,35 @@ describe('test/assets.test.js', () => {
         rejectUnauthorized: false,
       }).then(response => {
         assert(response.status === 200);
-        assert(response.data.includes('https:\/\/127.0.0.1:8000\/index.css'));
+        assert(response.data.includes('https://127.0.0.1:8000/index.css'));
+      });
+    });
+  });
+
+  describe('https assets.url without dynamicLocalIP', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.cluster({
+        baseDir: 'apps/https-dynamic-ip',
+        port: 8443,
+        https: {
+          cert: path.join(__dirname, 'fixtures/apps/https-dynamic-ip/server.cert'),
+          key: path.join(__dirname, 'fixtures/apps/https-dynamic-ip/server.key'),
+        },
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return urllib.request(`https://${address.ip()}:8443`, {
+        dataType: 'text',
+        rejectUnauthorized: false,
+      }).then(response => {
+        assert(response.status === 200);
+        assert(response.data.includes('http://127.0.0.1:8000/index.css'));
       });
     });
   });
