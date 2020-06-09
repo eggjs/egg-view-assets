@@ -28,6 +28,7 @@ module.exports = appInfo => ({
     templateViewEngine: '',
     crossorigin: false,
     contextKey: 'context',
+    dynamicLocalIP: true,
     devServer: {
       enable: true,
       command: '',

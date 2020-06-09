@@ -19,7 +19,7 @@ module.exports = app => {
         throw new Error('check autoPort fail');
       }
     }
-    const protocol = app.options.https ? 'https' : 'http';
+    const protocol = app.options.https && assetsConfig.dynamicLocalIP ? 'https' : 'http';
     assetsConfig.url = `${protocol}://127.0.0.1:${port}`;
   }
 
