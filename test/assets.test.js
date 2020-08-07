@@ -4,6 +4,8 @@ const path = require('path');
 const mock = require('egg-mock');
 const fs = require('mz/fs');
 const assert = require('assert');
+const urllib = require('urllib');
+const address = require('address');
 
 describe('test/assets.test.js', () => {
 
@@ -240,6 +242,62 @@ describe('test/assets.test.js', () => {
         .get('/')
         .expect(/<link rel="stylesheet" href="http:\/\/localhost\/index.b8e2efea.css" \/>/)
         .expect(200);
+    });
+  });
+
+  describe('https assets.url with dynamicLocalIP', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.cluster({
+        baseDir: 'apps/https',
+        port: 8443,
+        https: {
+          cert: path.join(__dirname, 'fixtures/apps/https/server.cert'),
+          key: path.join(__dirname, 'fixtures/apps/https/server.key'),
+        },
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return urllib.request('https://127.0.0.1:8443', {
+        dataType: 'text',
+        rejectUnauthorized: false,
+      }).then(response => {
+        assert(response.status === 200);
+        assert(response.data.includes('https://127.0.0.1:8000/index.css'));
+      });
+    });
+  });
+
+  describe('https assets.url without dynamicLocalIP', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.cluster({
+        baseDir: 'apps/https-dynamic-ip',
+        port: 8443,
+        https: {
+          cert: path.join(__dirname, 'fixtures/apps/https-dynamic-ip/server.cert'),
+          key: path.join(__dirname, 'fixtures/apps/https-dynamic-ip/server.key'),
+        },
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return urllib.request(`https://${address.ip()}:8443`, {
+        dataType: 'text',
+        rejectUnauthorized: false,
+      }).then(response => {
+        assert(response.status === 200);
+        assert(response.data.includes('http://127.0.0.1:8000/index.css'));
+      });
     });
   });
 
@@ -487,6 +545,35 @@ describe('test/assets.test.js', () => {
       ctx.helper.assets.setEntry('index.js');
       const script = ctx.helper.assets.getScript();
       assert(script.includes('crossorigin'));
+    });
+  });
+
+  describe('should insert webpack global variable just once', () => {
+    let app;
+    before(() => {
+      mock.env('default');
+      app = mock.app({
+        baseDir: 'apps/multiple-getscript',
+      });
+      return app.ready();
+    });
+
+    after(() => app.close());
+    afterEach(mock.restore);
+
+    it('should works', () => {
+      const ctx = app.mockContext();
+
+      const script = ctx.helper.assets.getScript('vendor.js');
+      assert(script.includes('__webpack_public_path__ = \'/\';'));
+      assert(script.includes('src="/vendor.js"'));
+
+      [ 'a.js', 'b.js', 'c.js' ].forEach(file => {
+        const anotherScript = ctx.helper.assets.getScript(file);
+        assert(!anotherScript.includes('__webpack_public_path__'));
+        assert(anotherScript.includes(`src="/${file}"`));
+      });
+
     });
   });
 });

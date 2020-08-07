@@ -1,4 +1,19 @@
 
+1.6.1 / 2020-06-09
+==================
+
+**features**
+  * [[`c7ec6e6`](http://github.com/eggjs/egg-view-assets/commit/c7ec6e671220a71db0ba59ef485f064ca622ccd7)] - feat: make sure `__webpack_public_path__` inserted just once (#31) (viko16 <<viko16@users.noreply.github.com>>)
+
+**fixes**
+  * [[`c992877`](http://github.com/eggjs/egg-view-assets/commit/c992877307e4c4178e3e337a5ca43a982e3254e4)] - fix: prefer http://127.0.0.1 even if https is on (#37) (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
+1.6.0 / 2019-09-19
+==================
+
+**features**
+  * [[`287aedb`](http://github.com/eggjs/egg-view-assets/commit/287aedb4e1ee58861e76198a364e4ff9d7122d92)] - feat: set protocol according to app.options.https (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.5.0 / 2019-04-09
 ==================
 

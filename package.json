@@ -6,7 +6,7 @@
       "view"
     ]
   },
-  "version": "1.5.0",
+  "version": "1.6.1",
   "description": "Manage frontend assets in development and production",
   "keywords": [
     "egg",
@@ -38,6 +38,7 @@
     "puppeteer": "^1.11.0",
     "supertest": "^3.3.0",
     "uglify-js": "^3.3.21",
+    "urllib": "^2.34.1",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
