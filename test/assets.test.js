@@ -260,7 +260,7 @@ describe('test/assets.test.js', () => {
     it('should GET /', () => {
       return app.httpRequest()
         .get('/')
-        .expect(/<link rel="stylesheet" href="http:\/\/local.test.cn:8000\/index.b8e2efea.css" \/>/)
+        .expect(/<link rel="stylesheet" href="http:\/\/local.test.cn:8000\/index.css" \/>/)
         .expect(200);
     });
   });
