@@ -1,4 +1,10 @@
 
+1.6.2 / 2021-03-22
+==================
+
+**fixes**
+  * [[`ee0012e`](http://github.com/eggjs/egg-view-assets/commit/ee0012eca841b1ce2b3264e8154a9a4e3d5f8c15)] - fix: 修复autoPort时，port数据格式和fs模块要求数据格式不匹配问题 (#39) (拾邑 <<mr_suanmei@163.com>>)
+
 1.6.1 / 2020-06-09
 ==================
 
