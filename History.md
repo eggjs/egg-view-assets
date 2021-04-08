@@ -1,4 +1,10 @@
 
+1.7.0 / 2021-04-08
+==================
+
+**features**
+  * [[`6c5b719`](http://github.com/eggjs/egg-view-assets/commit/6c5b71913994a0f18bf4585df6245cbba0390e3f)] - feat: start detecting port from devServer.port (#40) (Chen Yangjian <<252317+cyjake@users.noreply.github.com>>)
+
 1.6.2 / 2021-03-22
 ==================
 
