@@ -193,4 +193,37 @@ describe('test/dev_server.test.js', () => {
       await app1.close();
     }
   });
+
+  it('should auto check port with autoPort and port offset', async () => {
+    mock.env('local');
+    const app1 = mock.cluster({
+      baseDir: 'apps/autoport-offset',
+    });
+
+    await app1.ready();
+
+    await app1.httpRequest()
+      .get('/')
+      .expect(/http:\/\/127.0.0.1:8000\/index.js/)
+      .expect(200);
+    await app1.httpRequest()
+      .get('/port')
+      .expect('8000')
+      .expect(200);
+
+    app1.expect('stdout', /\[server] listening 8000/);
+    app1.expect('stdout', /\[server] SOCKET_SERVER: http:\/\/127.0.0.1:8000/);
+
+    app = mock.cluster({
+      baseDir: 'apps/autoport-offset',
+    });
+    // app.debug();
+    try {
+      await app.ready();
+
+      app.expect('stdout', /\[server] listening 8001/);
+    } finally {
+      await app1.close();
+    }
+  });
 });
