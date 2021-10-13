@@ -29,6 +29,7 @@ module.exports = appInfo => ({
     crossorigin: false,
     contextKey: 'context',
     dynamicLocalIP: true,
+    intranetIP: false,
     devServer: {
       enable: true,
       command: '',
