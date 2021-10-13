@@ -301,6 +301,31 @@ describe('test/assets.test.js', () => {
     });
   });
 
+  describe('https assets.url with intranetIP', () => {
+    let app;
+
+    before(() => {
+      mock.env('local');
+      app = mock.cluster({
+        baseDir: 'apps/intranet-ip',
+      });
+      return app.ready();
+    });
+    after(() => app.close());
+
+    it('should GET /', () => {
+      return app.httpRequest()
+        .get('/')
+        .expect(/<div id="root"><\/div>/)
+        .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
+        .expect(res => {
+          assert(res.text.includes(`http://${address.ip()}:8000/index.css`));
+          assert(res.text.includes(`http://${address.ip()}:8000/index.js`));
+        })
+        .expect(200);
+    });
+  });
+
   describe('custom contextKey', () => {
     let app;
 

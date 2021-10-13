@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
+const address = require('address');
 const AssetsView = require('./lib/assets_view');
 
 module.exports = app => {
@@ -20,7 +21,8 @@ module.exports = app => {
       }
     }
     const protocol = app.options.https && assetsConfig.dynamicLocalIP ? 'https' : 'http';
-    assetsConfig.url = `${protocol}://127.0.0.1:${port}`;
+    const hostIP = assetsConfig.intranetIP ? address.ip() : '127.0.0.1';
+    assetsConfig.url = `${protocol}://${hostIP}:${port}`;
   }
 
   // it should check manifest.json on deployment
