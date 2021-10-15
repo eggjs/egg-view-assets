@@ -619,7 +619,7 @@ describe('test/assets.test.js', () => {
       before(() => {
         mock.env('prod');
         app = mock.cluster({
-          baseDir: 'apps/assets',
+          baseDir: 'apps/assets-nonce',
         });
         return app.ready();
       });
