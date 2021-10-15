@@ -576,4 +576,67 @@ describe('test/assets.test.js', () => {
 
     });
   });
+
+  describe('AssetsView with nonce', () => {
+    let app;
+
+    describe('local', () => {
+      before(() => {
+        mock.env('local');
+        app = mock.cluster({
+          baseDir: 'apps/assets-nonce',
+        });
+        app.debug();
+        return app.ready();
+      });
+      after(() => app.close());
+
+      it('should GET /', () => {
+        return app.httpRequest()
+          .get('/')
+          .expect(/<div id="root"><\/div>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
+          .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
+          .expect(/<script nonce=cspnonce>window.__webpack_public_path__ = '\/';<\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script nonce=cspnonce>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
+          .expect(200);
+      });
+
+      it('should GET jsx', () => {
+        return app.httpRequest()
+          .get('/account')
+          .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/account.css" \/>/)
+          .expect(/<script src="http:\/\/127.0.0.1:8000\/account.js"><\/script>/)
+          .expect(200);
+      });
+    });
+
+    describe('production', () => {
+      let app;
+
+      before(() => {
+        mock.env('prod');
+        app = mock.cluster({
+          baseDir: 'apps/assets',
+        });
+        return app.ready();
+      });
+      after(() => app.close());
+
+      it('should GET /', () => {
+        return app.httpRequest()
+          .get('/')
+          .expect(/<div id="root"><\/div>/)
+          .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css" \/>/)
+          .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
+          .expect(/<script nonce=cspnonce>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
+          .expect(res => {
+            assert(res.text.includes('<script nonce=cspnonce>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
+          })
+          .expect(200);
+      });
+    });
+  });
 });

@@ -63,7 +63,8 @@
     "app.js"
   ],
   "ci": {
-    "version": "8, 10",
+    "type": "github",
+    "version": "8, 10, 12, 14, 16",
     "license": true
   },
   "repository": {
