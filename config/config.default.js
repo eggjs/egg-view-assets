@@ -19,6 +19,7 @@ module.exports = appInfo => ({
    * @property {Boolean} devServer.env - custom environment
    * @property {Boolean} devServer.debug - show stdout/stderr for devServer
    * @property {Boolean} devServer.waitStart - whether wait devServer starting
+   * @property {Function} nonce(ctx) - dynamic generate nonce for csp(https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
    */
   assets: {
     isLocalOrUnittest: appInfo.env === 'local' || appInfo.env === 'unittest',
