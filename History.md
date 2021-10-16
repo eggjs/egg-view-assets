@@ -1,4 +1,10 @@
 
+1.8.0 / 2021-10-16
+==================
+
+**features**
+  * [[`cdab574`](http://github.com/eggjs/egg-view-assets/commit/cdab574d0d5a95533a6b7a8af34f850b0168b532)] - feat: support config.nonce (#42) (Yiyu He <<dead_horse@qq.com>>)
+
 1.7.0 / 2021-04-08
 ==================
 
