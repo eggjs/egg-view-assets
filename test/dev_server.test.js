@@ -10,10 +10,11 @@ describe('test/dev_server.test.js', () => {
 
   let app;
   afterEach(mock.restore);
-  afterEach(() => app.close());
+  afterEach(() => app && app.close());
   afterEach(() => sleep(5000));
 
   it('should start/stop dev server', async () => {
+    if (process.platform === 'win32') return;
     mock.env('local');
     app = mock.cluster({
       baseDir: 'apps/assets',

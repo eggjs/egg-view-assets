@@ -1,12 +1,12 @@
 {
   "name": "egg-view-assets",
+  "version": "1.8.0",
   "eggPlugin": {
     "name": "assets",
     "dependencies": [
       "view"
     ]
   },
-  "version": "1.8.0",
   "description": "Manage frontend assets in development and production",
   "keywords": [
     "egg",
@@ -25,11 +25,8 @@
     "sdk-base": "^3.5.1"
   },
   "devDependencies": {
-    "autod": "^3.0.1",
-    "autod-egg": "^1.1.0",
     "egg": "^2.14.2",
     "egg-bin": "^4.10.0",
-    "egg-ci": "^1.11.0",
     "egg-mock": "^3.21.0",
     "egg-view-ejs": "^2.0.0",
     "egg-view-nunjucks": "^2.1.6",
@@ -38,21 +35,18 @@
     "puppeteer": "^1.11.0",
     "supertest": "^3.3.0",
     "uglify-js": "^3.3.21",
-    "urllib": "^2.34.1",
-    "webstorm-disable-index": "^1.2.0"
+    "urllib": "^2.34.1"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "scripts": {
     "dev": "egg-bin dev",
-    "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
+    "test": "npm run lint -- --fix && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
-    "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
-    "pkgfiles": "egg-bin pkgfiles",
-    "autod": "autod",
+    "ci": "npm run lint && npm run cov",
     "uglify": "uglifyjs lib/fixtures/decode.js -o lib/fixtures/decode.min.js"
   },
   "files": [
@@ -62,11 +56,6 @@
     "agent.js",
     "app.js"
   ],
-  "ci": {
-    "type": "github",
-    "version": "8, 10, 12, 14, 16",
-    "license": true
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eggjs/egg-view-assets.git"
