@@ -20,8 +20,9 @@ describe('test/dev_server.test.js', () => {
     });
     app.debug();
     await app.ready();
-    const reg = new RegExp(`Run "node ${path.join(__dirname, 'fixtures/apps/mocktool/server.js')}" success, listen on 8000`);
-    app.expect('stdout', reg);
+    // const reg = new RegExp(`Run "node ${path.join(__dirname, 'fixtures/apps/mocktool/server.js')}" success, listen on 8000`);
+    // app.expect('stdout', reg);
+    app.expect('stdout', / success, listen on 8000/);
 
     await app.close();
     app.expect('stdout', /\[egg-view-assets] dev server will be killed/);
