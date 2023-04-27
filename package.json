@@ -1,12 +1,12 @@
 {
   "name": "egg-view-assets",
+  "version": "1.8.0",
   "eggPlugin": {
     "name": "assets",
     "dependencies": [
       "view"
     ]
   },
-  "version": "1.8.0",
   "description": "Manage frontend assets in development and production",
   "keywords": [
     "egg",
