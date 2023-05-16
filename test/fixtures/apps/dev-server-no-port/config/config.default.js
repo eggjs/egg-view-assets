@@ -13,7 +13,7 @@ exports.assets = {
     command: 'node ' + require.resolve('./server.js'),
     cwd: __dirname,
     env: {
-      DEBUG: true,
+      NODE_DEBUG: true,
     },
     timeout: 5000,
     debug: process.env.DEV_SERVER_DEBUG === 'true',

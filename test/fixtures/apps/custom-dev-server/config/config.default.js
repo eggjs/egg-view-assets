@@ -13,7 +13,7 @@ exports.assets = {
     cwd: __dirname,
     port: 8000,
     env: {
-      DEBUG: true,
+      NODE_DEBUG: true,
     },
     timeout: 5000,
     debug: process.env.DEV_SERVER_DEBUG === 'true',
