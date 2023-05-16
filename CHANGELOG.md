@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.2](https://github.com/eggjs/egg-view-assets/compare/v1.8.1...v1.8.2) (2023-05-16)
+
+
+### Bug Fixes
+
+* handle path compatibility issues on Windows ([#45](https://github.com/eggjs/egg-view-assets/issues/45)) ([16d849d](https://github.com/eggjs/egg-view-assets/commit/16d849d287fea248a330516e9b3f9289bf374a4b))
+
 ## [1.8.1](https://github.com/eggjs/egg-view-assets/compare/v1.8.0...v1.8.1) (2023-04-27)
 
 
@@ -146,4 +153,3 @@
 
 **others**
   * [[`e369e2c`](http://github.com/eggjs/egg-view-assets/commit/e369e2c924bb09e949f27e5095c29d7bcddda68a)] - docs: update readme (#6) (Haoliang Gao <<sakura9515@gmail.com>>),fatal: No names found, cannot describe anything.
-
