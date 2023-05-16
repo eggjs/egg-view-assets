@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.3](https://github.com/eggjs/egg-view-assets/compare/v1.8.2...v1.8.3) (2023-05-16)
+
+
+### Bug Fixes
+
+* the paths should be separated by ';' ([#46](https://github.com/eggjs/egg-view-assets/issues/46)) ([d1d10a5](https://github.com/eggjs/egg-view-assets/commit/d1d10a55798bcf6ade02d276ba96eea92b39e0f2))
+
 ## [1.8.2](https://github.com/eggjs/egg-view-assets/compare/v1.8.1...v1.8.2) (2023-05-16)
 
 
