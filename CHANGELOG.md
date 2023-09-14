@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.4](https://github.com/eggjs/egg-view-assets/compare/v1.8.3...v1.8.4) (2023-09-14)
+
+
+### Bug Fixes
+
+* config.publicPath setting / to // bug ([#47](https://github.com/eggjs/egg-view-assets/issues/47)) ([b408ffd](https://github.com/eggjs/egg-view-assets/commit/b408ffd4b42cf82381c190b100815e9e7760885b))
+
 ## [1.8.3](https://github.com/eggjs/egg-view-assets/compare/v1.8.2...v1.8.3) (2023-05-16)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "egg-view-assets",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "eggPlugin": {
     "name": "assets",
     "dependencies": [
