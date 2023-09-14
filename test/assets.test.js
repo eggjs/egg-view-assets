@@ -441,6 +441,16 @@ describe('test/assets.test.js', () => {
         style = ctx.helper.assets.getStyle('index.css');
         assert(style.includes('href="/public/index.css"'));
       });
+
+      it('should render with publicPath setting /', () => {
+        mock(app.config.assets, 'publicPath', '/');
+
+        const ctx = app.mockContext();
+        ctx.helper.assets.setEntry('index.js');
+        const script = ctx.helper.assets.getScript();
+        assert(script.includes('__webpack_public_path__ = \'/\';'));
+        assert(script.includes('src="/index.js"'));
+      });
     });
   });
 
