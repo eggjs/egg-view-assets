@@ -191,7 +191,7 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-          .expect(/<script>window.__webpack_public_path__ = 'http:\/\/127.0.0.1:8000\/';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/127.0.0.1:8000\/';<\/script/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
@@ -215,7 +215,7 @@ describe('test/assets.test.js', () => {
           .get('/')
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css" \/>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
-          .expect(/<script>window.__webpack_public_path__ = 'http:\/\/cdn.com\/app\/public\/';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
           .expect(/<script>window.resourceBaseUrl = 'http:\/\/cdn.com\/app\/public\/';<\/script/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
@@ -517,7 +517,7 @@ describe('test/assets.test.js', () => {
       const ctx = app.mockContext();
       ctx.helper.assets.setEntry('index.js');
       const script = ctx.helper.assets.getScript();
-      assert(script.includes('__webpack_public_path__ = \'http://remotehost/public\/\';'));
+      assert(script.includes('__webpack_public_path__ = \'/public\/\';'));
       assert(script.includes('src="http://remotehost/public/index.js"'));
       const style = ctx.helper.assets.getStyle();
       assert(style.includes('href="http://remotehost/index.css"'));
@@ -607,7 +607,7 @@ describe('test/assets.test.js', () => {
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-          .expect(/<script nonce=cspnonce>window.__webpack_public_path__ = 'http:\/\/127.0.0.1:8000\/';<\/script>/)
+          .expect(/<script nonce=cspnonce>window.__webpack_public_path__ = '\/';<\/script>/)
           .expect(res => {
             assert(res.text.includes('<script nonce=cspnonce>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
           })
@@ -641,7 +641,7 @@ describe('test/assets.test.js', () => {
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css" \/>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
-          .expect(/<script nonce=cspnonce>window.__webpack_public_path__ = 'http:\/\/cdn.com\/app\/public\/';<\/script>/)
+          .expect(/<script nonce=cspnonce>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
           .expect(res => {
             assert(res.text.includes('<script nonce=cspnonce>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
           })

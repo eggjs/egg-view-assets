@@ -11,6 +11,7 @@ exports.view = {
 };
 exports.assets = {
   publicPath: '/app/public',
+  resourcePathToURL: true,
   devServer: {
     waitStart: true,
     command: 'node ' + path.join(__dirname, '../../mocktool/server.js'),
