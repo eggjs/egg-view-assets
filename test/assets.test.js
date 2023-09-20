@@ -31,7 +31,7 @@ describe('test/assets.test.js', () => {
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/127.0.0.1:8000\/index.css" \/>/)
           .expect(/<script src="http:\/\/127.0.0.1:8000\/index.js"><\/script>/)
-          .expect(/<script>window.__webpack_public_path__ = '\/';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = 'http:\/\/127.0.0.1:8000\/';<\/script>/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
           })
@@ -65,7 +65,7 @@ describe('test/assets.test.js', () => {
           .expect(/<div id="root"><\/div>/)
           .expect(/<link rel="stylesheet" href="http:\/\/cdn.com\/app\/public\/index.b8e2efea.css" \/>/)
           .expect(/<script src="http:\/\/cdn.com\/app\/public\/index.c4ae6394.js"><\/script>/)
-          .expect(/<script>window.__webpack_public_path__ = '\/app\/public\/';<\/script>/)
+          .expect(/<script>window.__webpack_public_path__ = 'http:\/\/cdn.com\/app\/public\/';<\/script>/)
           .expect(res => {
             assert(res.text.includes('<script>(function(){window.context = JSON.parse(decodeURIComponent("%7B%22data%22%3A1%7D"));})()<\/script>'));
           })

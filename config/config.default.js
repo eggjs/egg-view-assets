@@ -8,6 +8,7 @@ module.exports = appInfo => ({
    * @member Config#assets
    * @property {String} url - the host of the assets, it will be `http://127.0.0.1:${devServer.port}` in development.
    * @property {String} publicPath - the base path of the assets
+   * @property {Boolean} resourcePathToURL - convert the value `window.__webpack_public_path__` of the variable into url/publicPath, default is false
    * @property {String} templatePath - the file path of template rendering html
    * @property {String} templateViewEngine - the view engine for rendering template
    * @property {Boolean} crossorigin - if script is cross origin set this config to true
@@ -25,6 +26,7 @@ module.exports = appInfo => ({
     isLocalOrUnittest: appInfo.env === 'local' || appInfo.env === 'unittest',
     url: '',
     publicPath: '',
+    resourcePathToURL: false,
     templatePath: '',
     templateViewEngine: '',
     crossorigin: false,
