@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/eggjs/egg-view-assets/compare/v1.8.4...v1.9.0) (2023-09-20)
+
+
+### Features
+
+* change __webpack_public_path__ var value to assets.resourceBase ([#49](https://github.com/eggjs/egg-view-assets/issues/49)) ([a8f9f94](https://github.com/eggjs/egg-view-assets/commit/a8f9f949ebe43e8d80e4503a89eb0a30ba9ca93c))
+
 ## [1.8.4](https://github.com/eggjs/egg-view-assets/compare/v1.8.3...v1.8.4) (2023-09-14)
 
 
