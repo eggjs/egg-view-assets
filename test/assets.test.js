@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const mock = require('egg-mock');
 const fs = require('mz/fs');
@@ -250,12 +248,14 @@ describe('test/assets.test.js', () => {
 
     before(() => {
       mock.env('local');
+      const certFile = path.join(__dirname, 'fixtures/apps/https/server.cert');
+      const keyFile = path.join(__dirname, 'fixtures/apps/https/server.key');
       app = mock.cluster({
         baseDir: 'apps/https',
         port: 8443,
         https: {
-          cert: path.join(__dirname, 'fixtures/apps/https/server.cert'),
-          key: path.join(__dirname, 'fixtures/apps/https/server.key'),
+          cert: certFile,
+          key: keyFile,
         },
       });
       return app.ready();
@@ -263,9 +263,13 @@ describe('test/assets.test.js', () => {
     after(() => app.close());
 
     it('should GET /', () => {
-      return urllib.request('https://127.0.0.1:8443', {
+      const httpclient = new urllib.HttpClient({
+        connect: {
+          rejectUnauthorized: false,
+        },
+      });
+      return httpclient.request('https://127.0.0.1:8443', {
         dataType: 'text',
-        rejectUnauthorized: false,
       }).then(response => {
         assert(response.status === 200);
         assert(response.data.includes('https://127.0.0.1:8000/index.css'));
@@ -291,9 +295,13 @@ describe('test/assets.test.js', () => {
     after(() => app.close());
 
     it('should GET /', () => {
-      return urllib.request(`https://${address.ip()}:8443`, {
+      const httpclient = new urllib.HttpClient({
+        connect: {
+          rejectUnauthorized: false,
+        },
+      });
+      return httpclient.request(`https://${address.ip()}:8443`, {
         dataType: 'text',
-        rejectUnauthorized: false,
       }).then(response => {
         assert(response.status === 200);
         assert(response.data.includes('http://127.0.0.1:8000/index.css'));

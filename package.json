@@ -24,17 +24,19 @@
     "sdk-base": "^3.5.1"
   },
   "devDependencies": {
-    "egg": "^2.14.2",
-    "egg-bin": "^4.10.0",
-    "egg-mock": "^3.21.0",
+    "address": "^1.2.2",
+    "egg": "^3.17.4",
+    "egg-bin": "^6.4.2",
+    "egg-mock": "^5.10.8",
     "egg-view-ejs": "^2.0.0",
     "egg-view-nunjucks": "^2.1.6",
-    "eslint": "^5.12.0",
-    "eslint-config-egg": "^7.1.0",
+    "eslint": "^8.49.0",
+    "eslint-config-egg": "^12.2.1",
+    "koa": "^2.14.2",
     "puppeteer": "^1.11.0",
     "supertest": "^3.3.0",
     "uglify-js": "^3.3.21",
-    "urllib": "^2.34.1"
+    "urllib": "^3.19.0"
   },
   "engines": {
     "node": ">=8.0.0"
