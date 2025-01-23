@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/eggjs/egg-view-assets/compare/v1.9.0...v1.10.0) (2025-01-23)
+
+
+### Features
+
+* css support crossorigin ([#50](https://github.com/eggjs/egg-view-assets/issues/50)) ([bbb2794](https://github.com/eggjs/egg-view-assets/commit/bbb2794d162dda65729ca828da278fa85e2b34b2))
+
 ## [1.9.0](https://github.com/eggjs/egg-view-assets/compare/v1.8.4...v1.9.0) (2023-09-20)
 
 
