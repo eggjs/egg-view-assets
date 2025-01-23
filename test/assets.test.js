@@ -554,6 +554,8 @@ describe('test/assets.test.js', () => {
       const ctx = app.mockContext();
       ctx.helper.assets.setEntry('index.js');
       const script = ctx.helper.assets.getScript();
+      const style = ctx.helper.assets.getStyle();
+      assert(style.includes('crossorigin'));
       assert(script.includes('crossorigin'));
     });
   });
