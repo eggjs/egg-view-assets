@@ -19,8 +19,13 @@ module.exports = app => {
         throw new Error('check autoPort fail');
       }
     }
-    const protocol = app.options.https && assetsConfig.dynamicLocalIP ? 'https' : 'http';
-    assetsConfig.url = `${protocol}://127.0.0.1:${port}`;
+    // if not set url,it will be `127.0.0.1:${devServer.port}`
+    if (assetsConfig.url) {
+      assetsConfig.url = `${assetsConfig.url}:${port}`;
+    } else {
+      const protocol = app.options.https && assetsConfig.dynamicLocalIP ? 'https' : 'http';
+      assetsConfig.url = `${protocol}://127.0.0.1:${port}`;
+    }
   }
 
   // it should check manifest.json on deployment
